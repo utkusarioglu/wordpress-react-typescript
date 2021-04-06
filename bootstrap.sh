@@ -23,6 +23,7 @@ sed -i "/homepage/c\  \"homepage\": \"\/wp-content\/themes\/$THEME_NAME\"" ./use
 yarn
 
 cat << EOF
+
 Bootstrapping complete.
 
 Now, you can open the repo in a devcontainer. But before that, please make 
@@ -34,9 +35,7 @@ DB_PASS: Password for wp's mysql access
 DB_NAME: Name for the schema that wp will use
 DB_ROOT_PASS: Mysql root user password
 
-After making sure that these values are defined, you can use ctrl + shift + p 
-and select "Remote-Containers: Reopen in Container" to open the repo in a 
-devcontainer.
-EOF
+After defining these values, you can press ctrl + shift + p and select 
+"Remote-Containers: Reopen in Container" to open the repo in a devcontainer.
 
-echo "Now, please open the repo inside devcontainer"
+EOF
