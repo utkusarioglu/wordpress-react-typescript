@@ -16,7 +16,7 @@ DB_ROOT_PASS: Mysql root user password
 
 2- Run `bootstrap.sh` to set the theme name and retrieve dependencies
 
-3- Start your devcontainer
+3- Start your devcontainer. This may take a while as some packages will be added to the wp image (such as git).
 
 4- Open localhost (or your ip, if you prefer that) and do the all-too-familliar
 WP setup
