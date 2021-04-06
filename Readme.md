@@ -6,13 +6,13 @@ runs in a devcontainer**.
 
 ## Usage
 
-1 - After cloning the repo, create an .env file with the following variables:
+1- After cloning the repo, create an .env file with the following variables:
 
-THEME_NAME: The name for the theme that you are developing
-DB_USER: Username for wp's mysql access
-DB_PASS: Password for wp's mysql access
-DB_NAME: Name for the schema that wp will use
-DB_ROOT_PASS: Mysql root user password
+- THEME_NAME: The name for the theme that you are developing
+- DB_USER: Username for wp's mysql access
+- DB_PASS: Password for wp's mysql access
+- DB_NAME: Name for the schema that wp will use
+- DB_ROOT_PASS: Mysql root user password
 
 2- Run `bootstrap.sh` to set the theme name and retrieve dependencies
 
