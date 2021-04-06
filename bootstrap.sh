@@ -18,10 +18,10 @@ THEME_DIR=theme/react-src
 
 cd $THEME_DIR
 
-sed -i "/homepage/c\  \"homepage\":\"\/wp-content\/themes\/$THEME_NAME\"," ./package.json
+sed -i "/homepage/c\  \"homepage\": \"\/wp-content\/themes\/$THEME_NAME\"," ./package.json
 
 # Notice that this one doesn't add a comma at the end
-sed -i "/homepage/c\  \"homepage\":\"\/wp-content\/themes\/$THEME_NAME\"" ./user.prod.json 
+sed -i "/homepage/c\  \"homepage\": \"\/wp-content\/themes\/$THEME_NAME\"" ./user.prod.json 
 
 yarn
 
