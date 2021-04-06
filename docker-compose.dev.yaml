@@ -26,6 +26,8 @@ services:
       - ./theme:/var/www/html/wp-content/themes/${THEME_NAME}
       # These shall come from persistent storage in production
       - ./uploads:/var/www/html/wp-content/uploads
+      # standalone access to scripts inside the container
+      - ./scripts/db:/scripts
 
   db:
     image: mysql:5.7
@@ -39,7 +41,7 @@ services:
     volumes:
       - db:/var/lib/mysql
       - ./backups/sql:/backups/sql
-      - ./scripts/basakbeykoz_db:/scripts
+      - ./scripts/db:/scripts
 
 volumes:
   db:
