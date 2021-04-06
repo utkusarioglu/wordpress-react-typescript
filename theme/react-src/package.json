@@ -42,5 +42,5 @@
     ]
   },
   "homepage": "/wp-content/themes/theme",
-  "browserLaunchTo": "http:\/\/192.168.1.151"
+  "browserLaunchTo": "http:\/\/localhost"
 }
