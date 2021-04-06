@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  wp:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: ${THEME_NAME}__wp
+    restart: on-failure
+    stdin_open: true
+    ports:
+      - 80:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_NAME: ${DB_NAME}
+      WORDPRESS_DB_PASSWORD: ${DB_PASS}
+    depends_on:
+      - db
+    volumes:
+      # These shall be copied by the dockerfile
+      - ./config/apache/apache.conf:/etc/apache2/sites-enabled/000-default.conf
+      - ./config/uploads/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+      - ./plugins:/var/www/html/wp-content/plugins
+      # The theme requires building and then copying by the dockerfile
+      - ./theme:/var/www/html/wp-content/themes/${THEME_NAME}
+      # These shall come from persistent storage in production
+      - ./uploads:/var/www/html/wp-content/uploads
+
+  db:
+    image: mysql:5.7
+    container_name: ${THEME_NAME}__db
+    restart: on-failure
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+    volumes:
+      - db:/var/lib/mysql
+      - ./backups/sql:/backups/sql
+      - ./scripts/basakbeykoz_db:/scripts
+
+volumes:
+  db:
