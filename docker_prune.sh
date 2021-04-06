@@ -21,5 +21,5 @@ do
   docker container $c "${THEME_NAME}__wp" "${THEME_NAME}__db"  
 done;  
 
-docker volume rm wp_db
-docker network rm wp_default
+docker volume rm wordpress-react_db
+docker network rm wordpress-react_default
