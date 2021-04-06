@@ -5,6 +5,9 @@ plugins/index.php
 
 theme/*
 !theme/react-src
+!theme/react-src/*
+theme/**/node_modules
+theme/**/build
 
 backups
 .env
