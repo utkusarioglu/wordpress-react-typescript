@@ -45,4 +45,4 @@ react repos where one folder above react src is typically the repo root.
 
 ## Acknowledgements
 
-This repo uses [create-react-wptheme](https://github.com/devloco/create-react-wptheme) by devloco. For wp and react integration.
+This repo uses [create-react-wptheme](https://github.com/devloco/create-react-wptheme) by devloco for wp and react integration.
