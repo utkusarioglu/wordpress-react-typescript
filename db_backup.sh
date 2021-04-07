@@ -87,11 +87,8 @@ fi
 echo "Creating ${backup_file_name} inside ${HOST_BACKUPS_DIR}"
 
 containter_backup_path="${CONTAINER_BACKUPS_DIR}/${backup_file_name}"
-docker exec "${THEME_NAME}__db" \
-  mysqldump \
-    -uroot \
-    -p${DB_ROOT_PASS} \
-    $DB_NAME > $containter_backup_path \
-    &> /dev/null
+docker exec "${THEME_NAME}__db" bash -c \
+  "mysqldump -uroot -p${DB_ROOT_PASS} $DB_NAME > $containter_backup_path" \
+  &> /dev/null
 
 
