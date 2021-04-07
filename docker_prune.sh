@@ -14,7 +14,15 @@ EOF
 exit 1;
 fi
 
-echo "Cleaning containers, volumes, and networks created for ${THEME_NAME}"
+echo "Running pruning for ${THEME_NAME}..."
+
+if [[ "$@" =~ "--no-backup" ]]; then
+  echo "Skipping db backup creation upon user command"
+else
+  bash ./db_backup.sh
+fi
+
+echo "Cleaning containers, volumes, and networks"
 
 for command in 'stop' 'rm';
 do
