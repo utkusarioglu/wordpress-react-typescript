@@ -4,7 +4,7 @@ source .env
 
 # Vars
 repo_name="$(basename "$PWD")"
-date=`date +%Y%m%d`
+date=`date +%Y%m%d-%H%M%S`
 HOST_BACKUPS_DIR=backups/sql
 CONTAINER_BACKUPS_DIR=backups/sql
 
