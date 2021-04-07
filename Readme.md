@@ -1,7 +1,7 @@
 # Wordpress - React
 
-A Wordpress development environment for react themes. This repo is your primary 
-choice if you'd like to develop a **React Typescript based WordPress theme that 
+A Wordpress development environment for react themes. This repo is your primary
+choice if you'd like to develop a **React Typescript based WordPress theme that
 runs in a devcontainer**.
 
 ## Usage
@@ -16,12 +16,13 @@ runs in a devcontainer**.
 
 2- Run `bootstrap.sh` to set the theme name and retrieve dependencies
 
-3- Start your devcontainer. This may take a while as some packages will be added to the wp image (such as git).
+3- Start your devcontainer. This may take a while as some packages will be added
+to the wp image (such as git).
 
-4- Open localhost (or your ip, if you prefer that) and do the all-too-familliar
+4- Open localhost (or your ip, if you prefer that) and do the all-too-familiar
 WP setup
 
-5- Once the setup is done, go to Appearance -> Themes and select your react 
+5- Once the setup is done, go to Appearance -> Themes and select your react
 theme. Its name will be "theme".
 
 6 - Visit your site and watch the spinning react logo
@@ -29,20 +30,31 @@ theme. Its name will be "theme".
 ## Scripts
 
 `bootstrap.sh` helps you set your theme name and get your dependencies. Using
-this script is recommended as without your theme name properly set, you will 
+this script is recommended as without your theme name properly set, you will
 have issues viewing your site.
 
 `docker_prune.sh` removes all containers, volumes, networks associates with your
-development environment.
+development environment. It will take a db sql backup before doing so. The
+backup behavior can be avoided by the use of `--no-backup` param.
 
 `theme_clean.sh` removes the files created by react wptheme scripts
 
+`build.sh` builds the theme and places it inside build directory
+
+`db_backup.sh` creates a backup of the wordpress db and places it inside
+`backups/sql` directory. The names of files will follow the pattern:
+[date]-[time].sql
+
+`db_restore.sh` restores the **latest** backup inside `backups/sql`.
+
 ## Repo management note
 
-Please note that react source files are not a separate repository. This
-entire codebase is governed as a single entity. This is different from regular
-react repos where one folder above react src is typically the repo root.
+Please note that react source files are not a separate repository. This entire
+codebase is governed as a single entity. This is different from regular react
+repos where one folder above react src is typically the repo root.
 
 ## Acknowledgements
 
-This repo uses [create-react-wptheme](https://github.com/devloco/create-react-wptheme) by devloco for wp and react integration.
+This repo uses
+[create-react-wptheme](https://github.com/devloco/create-react-wptheme) by
+devloco for wp and react integration.
