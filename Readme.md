@@ -44,15 +44,15 @@ volume. This script takes some optional parameters:
 
 - `theme_clean.sh` removes the files created by react wptheme scripts
 
-- `build.sh` builds the theme and places it inside build directory
+- `build.sh` builds the theme and places it inside `build` directory
 
-- `db_backup.sh` creates a backup of the wordpress db and places it inside `backups/sql` directory. If no particular filename is specified, the names of files generated will follow the pattern: [date]-[time].sql.
+- `db_backup.sh` creates a backup of the wordpress db and places it inside `backups/sql` directory. If no particular filename is specified, the names of files generated will follow the pattern: `[date]-[time].sql`.
 This script takes some optional params:
   - `-f`, `--filename` [filename]: Allows setting custom filename for the backup file.
 
 - `db_restore.sh` restores the latest or any other specified backup inside `backups/sql`. This script takes some optional params:
   - `-f`, `--filename` [filename]: Allows setting a custom sql file from which to
-  restore the db data.
+  restore the db data. If this value is not specified, the latest sql file will be restored.
 
 ## Repo management note
 
