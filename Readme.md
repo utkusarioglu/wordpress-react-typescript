@@ -10,11 +10,11 @@ WordPress theme that runs in a devcontainer**.
 
 1. Create an .env file with the following variables:
 
-  - THEME_NAME: The name for the theme that you are developing
-  - DB_USER: Username for wp's mysql access
-  - DB_PASS: Password for wp's mysql access
-  - DB_NAME: Name for the schema that wp will use
-  - DB_ROOT_PASS: Mysql root user password
+   - THEME_NAME: The name for the theme that you are developing
+   - DB_USER: Username for wp's mysql access
+   - DB_PASS: Password for wp's mysql access
+   - DB_NAME: Name for the schema that wp will use
+   - DB_ROOT_PASS: Mysql root user password
 
 1. Run `bootstrap.sh` to set the theme name and get project dependencies
 
