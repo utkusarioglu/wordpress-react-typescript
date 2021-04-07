@@ -1,10 +1,12 @@
 #!/bin/bash
 
+source .env
+
 if ! test -f ".env"; then 
   cat << EOF
 Operation failed. This script requires the following properties from the .env file:
 
-THEME_NAME
+THEME_NAME: The name for the theme that you are developing
 
 Please make sure that an .env file exists and the listed properties are set, 
 and then rerun this script.
@@ -12,14 +14,13 @@ EOF
 exit 1;
 fi
 
-echo "Cleaning containers, volumes, networks created for this repo"
+echo "Cleaning containers, volumes, and networks created for ${THEME_NAME}"
 
-source .env
-
-for c in 'stop' 'rm';
+for command in 'stop' 'rm';
 do
-  docker container $c "${THEME_NAME}__wp" "${THEME_NAME}__db"  
+  docker container $command "${THEME_NAME}__wp" "${THEME_NAME}__db"  
 done;  
 
-docker volume rm wordpress-react_db
-docker network rm wordpress-react_default
+repo_name="$(basename "$PWD")"
+docker volume rm "${repo_name}_db"
+docker network rm "${repo_name}_default"
