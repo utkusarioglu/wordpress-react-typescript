@@ -7,7 +7,7 @@ CONTAINER_BACKUPS_DIR=backups/sql
 
 # Error checking for whether the environment vars are defined
 if ! test -f ".env"; then 
-  cat << EOF
+  cat >&2 << EOF
 
 Operation failed. This script requires the following properties from the .env file:
 

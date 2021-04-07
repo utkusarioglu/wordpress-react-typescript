@@ -3,7 +3,7 @@
 source .env
 
 if ! test -f ".env"; then 
-  cat << EOF
+  cat >&2 << EOF
 Operation failed. This script requires the following properties from the .env file:
 
 THEME_NAME: The name for the theme that you are developing
