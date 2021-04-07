@@ -27,7 +27,7 @@ services:
       # These shall come from persistent storage in production
       - ./uploads:/var/www/html/wp-content/uploads
       # standalone access to scripts inside the container
-      - ./scripts/db:/scripts
+      - ./scripts/wp:/scripts
 
   db:
     image: mysql:5.7
