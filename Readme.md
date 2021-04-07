@@ -39,7 +39,7 @@ have issues viewing your site.
 development environment. It will also take a sql backup before removing the db
 volume. This script takes some optional parameters:
   - `-n`, `--no-backup`: This will make the script disable automatic backup feature.
-  - `-f`, `--filename` [filename]: Allows setting custom filename for the backup 
+  - `-f`, `--filename` [filename]: Allows setting a custom filename for the backup 
   file. Read `db_backup.sh` section for details
 
 - `theme_clean.sh` removes the files created by react wptheme scripts
@@ -48,7 +48,7 @@ volume. This script takes some optional parameters:
 
 - `db_backup.sh` creates a backup of the wordpress db and places it inside `backups/sql` directory. If no particular filename is specified, the names of files generated will follow the pattern: `[date]-[time].sql`.
 This script takes some optional params:
-  - `-f`, `--filename` [filename]: Allows setting custom filename for the backup file.
+  - `-f`, `--filename` [filename]: Allows setting a custom filename for the backup file.
 
 - `db_restore.sh` restores the latest or any other specified backup inside `backups/sql`. This script takes some optional params:
   - `-f`, `--filename` [filename]: Allows setting a custom sql file from which to
