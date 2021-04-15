@@ -56,8 +56,7 @@ function handle_input {
       *)
         # TODO find a way to avoid this empty string check
         if [ ! -z $1 ]; then
-          echo "-${1}-"
-          invalid_flag_error
+          invalid_flag_error $1
           exit 1;
         fi
       ;;
