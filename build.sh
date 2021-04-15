@@ -12,7 +12,7 @@ cd ../..
 
 # move the build to the root/build dir
 # ! note that theme/theme may cause some errors, it's not clear whether
-# ! this name is dependend on css theme name
+# ! this name is dependent on css theme name
 mkdir -p build/$THEME_NAME
 mv theme/theme/* build/$THEME_NAME
 
