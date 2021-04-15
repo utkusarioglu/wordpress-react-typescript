@@ -13,13 +13,13 @@ project.
 
 1. Clone the repo
 
-1. Create an .env file with the following variables:
+1. Create an `.env` file with the following variables:
 
-   - THEME_NAME: The name for the theme that you are developing
-   - DB_USER: Username for WordPress' MySql access
-   - DB_PASS: Password for WordPress' MySql access
-   - DB_NAME: Name for the schema that WordPress will use
-   - DB_ROOT_PASS: MySql root user password
+   - `THEME_NAME`: The name for the theme that you are developing
+   - `DB_USER`: Username for WordPress' MySql access
+   - `DB_PASS`: Password for WordPress' MySql access
+   - `DB_NAME`: Name for the schema that WordPress will use
+   - `DB_ROOT_PASS`: MySql root user password
 
 1. Run `bootstrap.sh` to set the theme name and get project dependencies
 
