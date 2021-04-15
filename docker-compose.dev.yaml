@@ -19,8 +19,8 @@ services:
       - db
     volumes:
       # These shall be copied by the dockerfile
-      - ./config/apache/apache.conf:/etc/apache2/sites-enabled/000-default.conf
-      - ./config/uploads/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+      - ./config/wp/apache/apache.conf:/etc/apache2/sites-enabled/000-default.conf
+      - ./config/wp/uploads/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
       - ./plugins:/var/www/html/wp-content/plugins
       # The theme requires building and then copying by the dockerfile
       - ./theme:/var/www/html/wp-content/themes/${THEME_NAME}
