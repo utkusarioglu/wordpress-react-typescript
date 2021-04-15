@@ -44,7 +44,7 @@ volume. This script takes some optional parameters:
 
 - `theme_clean.sh` removes the files created by react wptheme scripts
 
-- `build.sh` builds the theme and places it inside `build` directory
+- `theme_build.sh` builds the theme and places it inside `build` directory
 
 - `db_backup.sh` creates a backup of the wordpress db and places it inside `backups/sql` directory. If no particular filename is specified, the names of files generated will follow the pattern: `[date]-[time].sql`.
 This script takes some optional params:
