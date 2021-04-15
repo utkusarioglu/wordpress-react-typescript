@@ -36,7 +36,7 @@ project.
 1. Once the setup is done, go to wp-admin -> Appearance -> Themes and select
    your React theme. Its name will be "theme".
 
-1. Visit your site of press F5\* and watch the spinning React logo.
+1. Visit your site or press F5\* and watch the spinning React logo.
 
 ### Usage with a pre-existing React project
 
