@@ -7,16 +7,13 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <h2>{window.config.pageTitle}</h2>
         <a
           className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
+          href="wp-admin"
           rel="noopener noreferrer"
         >
-          Learn React
+          visit wp-admin
         </a>
       </header>
     </div>
