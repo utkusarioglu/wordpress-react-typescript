@@ -11,7 +11,7 @@ WordPress theme that runs in a devcontainer**.
 This is the list you should follow if you are using this repo to start a new
 project.
 
-1. Clone the repo
+1. Use the template to create your own repo, then clone it on your dev machine.
 
 1. Create an `.env` file with the following variables:
 
