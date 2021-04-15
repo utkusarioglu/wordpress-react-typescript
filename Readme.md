@@ -101,7 +101,7 @@ cumbersome dev and backup tasks.
 
   - `-n`, `--no-backup`: This will make the script disable automatic backup
     feature.
-  - `-f`, `--filename` [filename]: Allows setting a custom filename for the
+  - `-f`, `--filename` `[filename]`: Allows setting a custom filename for the
     backup file. Read `db_backup.sh` section for details
 
 - `theme_clean.sh` removes runtime files created by React WordPress theme
@@ -115,13 +115,13 @@ cumbersome dev and backup tasks.
   files generated will follow the pattern: `[date]-[time].sql`. This script
   takes some optional params:
 
-  - `-f`, `--filename` [filename]: Allows setting a custom filename for the
+  - `-f`, `--filename` `[filename]`: Allows setting a custom filename for the
     backup file.
 
 - `db_restore.sh` restores the latest or any other specified backup inside
   `backups/sql`. This script takes some optional params:
 
-  - `-f`, `--filename` [filename]: Allows setting a custom sql file from which
+  - `-f`, `--filename` `[filename]`: Allows setting a custom sql file from which
     to restore the db data. If this value is not specified, the latest sql file
     will be restored.
 
@@ -131,7 +131,7 @@ cumbersome dev and backup tasks.
 
 ## Repo management note
 
-Please note that react source files are not a separate repository. This entire
+Please note that React source files are not a separate repository. This entire
 codebase is governed as a single entity. This is different from regular React
 projects where one folder above React src is typically the repo root.
 
