@@ -1,6 +1,6 @@
 # Wordpress - React - Typescript
 
-A Wordpress development environment for react typescript themes. This repo is
+A Wordpress development environment for React + Typescript themes. This repo is
 your primary choice if you'd like to develop a **React Typescript based
 WordPress theme that runs in a devcontainer**.
 
