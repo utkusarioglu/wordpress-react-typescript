@@ -36,7 +36,7 @@ project.
 1. Once the setup is done, go to wp-admin -> Appearance -> Themes and select
    your React theme. Its name will be "theme".
 
-1. Visit your site and watch the spinning React logo.
+1. Visit your site of press F5\* and watch the spinning React logo.
 
 ### Usage with a pre-existing React project
 
@@ -68,8 +68,8 @@ project as a WordPress theme.
 1. Go to wp-admin -> Appearance -> Themes and select your React theme. Its name
    will be the name specified in `style.css`.
 
-1. Visit your site and see your pre-existing React project being served by
-   WordPress.
+1. Visit your site or press F5\* and see your pre-existing React project being
+   served by WordPress.
 
 ### Usage with pre-existing WordPress database image
 
@@ -140,3 +140,7 @@ projects where one folder above React src is typically the repo root.
 This repo uses
 [create-react-wptheme](https://github.com/devloco/create-react-wptheme) by
 devloco for WordPress and React integration.
+
+---
+
+\*: This requires Chrome extension to be installed
