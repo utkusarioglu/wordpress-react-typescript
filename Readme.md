@@ -97,12 +97,12 @@ cumbersome dev and backup tasks.
 
 - `docker_prune.sh` removes all containers, volumes, networks associates with
   your development environment. It will also take a sql backup before removing
-  the db volume. This script takes some optional parameters:
+  the db volume. This script takes some args:
 
-  - `-n`, `--no-backup`: This will make the script disable automatic backup
-    feature.
-  - `-f`, `--filename` `[filename]`: Allows setting a custom filename for the
-    backup file. Read `db_backup.sh` section for details
+  - `-n`, `--no-backup` (optional): This will make the script disable automatic
+    backup feature.
+  - `-f`, `--filename` `[filename]` (optional): Allows setting a custom filename
+    for the backup file. Read `db_backup.sh` section for details
 
 - `theme_clean.sh` removes runtime files created by React WordPress theme
   scripts.
@@ -113,21 +113,22 @@ cumbersome dev and backup tasks.
 - `db_backup.sh` creates a backup of the WordPress database and places it inside
   `backups/sql` directory. If no particular filename is specified, the names of
   files generated will follow the pattern: `[date]-[time].sql`. This script
-  takes some optional params:
+  takes some args:
 
-  - `-f`, `--filename` `[filename]`: Allows setting a custom filename for the
-    backup file.
+  - `-f`, `--filename` `[filename]` (optional): Allows setting a custom filename
+    for the backup file.
 
 - `db_restore.sh` restores the latest or any other specified backup inside
-  `backups/sql`. This script takes some optional params:
+  `backups/sql`. This script takes some args:
 
-  - `-f`, `--filename` `[filename]`: Allows setting a custom sql file from which
-    to restore the db data. If this value is not specified, the latest sql file
-    will be restored.
+  - `-f`, `--filename` `[filename]` (optional): Allows setting a custom sql file
+    from which to restore the db data. If this value is not specified, the
+    latest sql file will be restored.
 
 - `db_replace_url.sh` replaces the current WordPress home url with the url
-  specified. This script takes a single param:
-  - `[new url]`: The url that will be written instead of WordPress home url
+  specified. This script takes a single arg:
+  - `-n`, `--new-url` `[url]`: The url that will be written instead of WordPress
+    home url
 
 ## Repo management note
 

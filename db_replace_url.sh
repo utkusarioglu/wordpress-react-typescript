@@ -9,7 +9,7 @@ cat >&2 << EOF
 Operation failed. $1 is not a recognized flag. 
 Available flags are listed below:
 
--n, --new-url [new url]: Url to which the current home url shall be corrected
+-n, --new-url [url]: Url to which the current home url shall be corrected
 
 EOF
 }
