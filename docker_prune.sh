@@ -1,19 +1,7 @@
 #!/bin/bash
 
+source scripts/host/check_env.sh
 source .env
-
-function theme_name_not_defined_error {
-cat >&2 << EOF
-
-Operation failed. This script requires the following properties from the .env file:
-
-THEME_NAME: The name for the theme that you are developing
-
-Please make sure that an .env file exists and the listed properties are set, 
-and then rerun this script.
-
-EOF
-}
 
 # Vars
 no_backup=FALSE
@@ -52,12 +40,6 @@ function parse_args {
   eval set -- "$PARAMS"
 }
 parse_args $@
-
-
-if ! test -f ".env"; then 
-  theme_name_not_defined_error
-  exit 1;
-fi
 
 echo "Running pruning for ${THEME_NAME}..."
 

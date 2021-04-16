@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source scripts/host/check_env.sh
 source .env
 
 NEW_URL=$1
