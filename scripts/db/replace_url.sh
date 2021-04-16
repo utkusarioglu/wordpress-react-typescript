@@ -60,7 +60,7 @@ function parse_args {
         fi
         ;;
 
-      -a|--new-url)
+      -n|--new-url)
         if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
           NEW_URL=$(clean_url $2)
           shift 2
