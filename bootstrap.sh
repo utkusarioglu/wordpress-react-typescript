@@ -10,7 +10,7 @@ sed -i "/homepage/c\  \"homepage\": \"\/wp-content\/themes\/$THEME_NAME\"," ./pa
 # Notice that this one doesn't add a comma at the end
 sed -i "/homepage/c\  \"homepage\": \"\/wp-content\/themes\/$THEME_NAME\"" ./user.prod.json 
 
-ECHO "Installing NPM packages using Yarn..."
+echo "Installing NPM packages using Yarn..."
 yarn
 
 cat << EOF
