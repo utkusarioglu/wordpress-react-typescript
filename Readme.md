@@ -95,7 +95,7 @@ cumbersome dev and backup tasks.
   this script is recommended as without your theme name properly set, you will
   have issues viewing your site.
 
-- `docker_prune.sh` removes all containers, volumes, networks associates with
+- `docker_prune.sh` removes all containers, volumes, networks associated with
   your development environment. It will also take a sql backup before removing
   the db volume. This script takes some args:
 
