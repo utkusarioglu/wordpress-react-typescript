@@ -26,45 +26,64 @@ DB_PASS=""
 DB_NAME=""
 NEW_URL=""
 
-# Parses input params to the relevant variables listed above
-function handle_input {
-  while test $# -gt 0; do
+function parse_args {
+  PARAMS=""
+  while (( "$#" )); do
     case "$1" in
       -u|--user)
-        shift
-        DB_USER=$1
-        shift
-        ;;&
+        if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
+          DB_USER=$2
+          shift 2
+        else
+          echo "Error: Argument for $1 is missing" >&2
+          exit 1
+        fi
+        ;;
 
       -p|--pass)
-        shift
-        DB_PASS=$1
-        shift
-        ;;&
+        if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
+          DB_PASS=$2
+          shift 2
+        else
+          echo "Error: Argument for $1 is missing" >&2
+          exit 1
+        fi
+        ;;
 
       -s|--schema)
-        shift
-        DB_NAME=$1
-        shift
-        ;;&
+        if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
+          DB_NAME=$2
+          shift 2
+        else
+          echo "Error: Argument for $1 is missing" >&2
+          exit 1
+        fi
+        ;;
 
       -a|--new-url)
-        shift
-        NEW_URL=$(clean_url $1)
-        shift
-        ;;&
-
-      *)
-        # TODO find a way to avoid this empty string check
-        if [ ! -z "$1" ]; then
-          invalid_flag_error $1
-          # exit 1;
+        if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
+          NEW_URL=$(clean_url $2)
+          shift 2
+        else
+          echo "Error: Argument for $1 is missing" >&2
+          exit 1
         fi
-      ;;
+        ;;
+
+      -*|--*=) # unsupported flags
+        echo "Error: Unsupported flag: $1" >&2
+        exit 1
+        ;;
+
+      *) # preserve positional arguments
+        PARAMS="$PARAMS $1"
+        shift
+        ;;
     esac
-  done 
+  done
+  eval set -- "$PARAMS"
 }
-handle_input $@
+parse_args $@
 
 CURRENT_URL=$(get_current_url $DB_USER $DB_PASS $DB_NAME)
 

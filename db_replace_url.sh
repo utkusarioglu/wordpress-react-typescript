@@ -1,3 +1,5 @@
+#!/bin/bash
+
 source .env
 
 NEW_URL=$1

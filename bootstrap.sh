@@ -1,5 +1,8 @@
 #!/bin/bash
 
+source .env
+source scripts/host/vars.sh
+
 if ! test -f ".env"; then 
   cat >&2 << EOF
 Operation failed. This script requires the following properties from the .env file:
@@ -12,14 +15,13 @@ EOF
 exit 1;
 fi
 
-source .env
-
-THEME_DIR=theme/react-src
-
+echo "Setting theme name as ${THEME_NAME}..."
 cd $THEME_DIR
 sed -i "/homepage/c\  \"homepage\": \"\/wp-content\/themes\/$THEME_NAME\"," ./package.json
 # Notice that this one doesn't add a comma at the end
 sed -i "/homepage/c\  \"homepage\": \"\/wp-content\/themes\/$THEME_NAME\"" ./user.prod.json 
+
+ECHO "Installing NPM packages using Yarn..."
 yarn
 
 cat << EOF

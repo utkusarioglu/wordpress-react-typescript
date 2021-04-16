@@ -1,5 +1,9 @@
 #!/bin/bash
 
+source scripts/host/sanitize_sql_filename.sh
+source scripts/host/vars.sh
+source .env
+
 function env_file_error {
 cat >&2 << EOF
 
@@ -24,46 +28,44 @@ Please make sure that you have specified the correct file name and try again.
 EOF
 }
 
-source .env
-
 # Vars
-HOST_BACKUPS_DIR=backups/sql
-CONTAINER_BACKUPS_DIR=backups/sql
 backup_file=""
 
-# Parses input params to the relevant variables listed above
-function handle_input {
-  while test $# -gt 0; do
+function parse_args {
+  PARAMS=""
+  while (( "$#" )); do
     case "$1" in
       -f|--filename)
-        shift
-        # adds .sql extension to the file if it's absent
-        if [ "${1:(-4)}" == '.sql' ]; then
-          backup_file=$1
-        else
-          backup_file="$1.sql"
-        fi
+        if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
+          backup_file="$(sanitize_sql_filename $2)"
 
-        # check whether the file exists, exit if it doesn't
-        if ! test -f "$HOST_BACKUPS_DIR/$backup_file"; then
-          nonexistent_file_error
+          # check whether the file exists, exit if it doesn't
+          if ! test -f "$HOST_BACKUPS_DIR/$backup_file"; then
+            nonexistent_file_error
+            exit 1
+          fi
+
+          shift 2
+        else
+          echo "Error: Argument for $1 is missing" >&2
           exit 1
         fi
+        ;;
 
+      -*|--*=) # unsupported flags
+        invalid_flag_error $1
+        exit 1
+        ;;
+
+      *) # preserve positional arguments
+        PARAMS="$PARAMS $1"
         shift
-        ;;&
-
-      *)
-        # TODO find a way to avoid this empty string check
-        if [ ! -z $1 ]; then
-          invalid_flag_error $1
-          exit 1;
-        fi
-      ;;
+        ;;
     esac
-  done 
+  done
+  eval set -- "$PARAMS"
 }
-handle_input $@
+parse_args $@
 
 # Error checking for whether the environment vars are defined
 if ! test -f ".env"; then 
@@ -96,4 +98,8 @@ to: $container_name
 EOF
 
 docker exec $container_name bash -c \
-  "mysql -u$DB_USER -p$DB_PASS $DB_NAME < /$container_backup_path &> /dev/null" 
+  "mysql \
+    -u$DB_USER \
+    -p$DB_PASS \
+    $DB_NAME < /$container_backup_path \
+    &> /dev/null" 

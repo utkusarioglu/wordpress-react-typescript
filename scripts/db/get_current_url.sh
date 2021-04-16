@@ -1,3 +1,5 @@
+#!/bin/bash
+
 source /scripts/clean_url.sh
 
 # Returns the currently active home url value from the wordpress database

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Removes trailing slash and protocol from url string
 function clean_url {
   URL=$1

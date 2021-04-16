@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source .env
+
 function theme_name_not_defined_error {
 cat >&2 << EOF
 
@@ -13,39 +15,43 @@ and then rerun this script.
 EOF
 }
 
-source .env
-
 # Vars
 no_backup=FALSE
 backup_file=""
 
-# Parses input params to the relevant variables listed above
-function handle_input {
-  while test $# -gt 0; do
+function parse_args {
+  PARAMS=""
+  while (( "$#" )); do
     case "$1" in
-      -f|--filename)
-        shift
-        backup_file=$1
-        shift
-        ;;&
-
-      -n|--no-backup) 
+      -n|--no-backup)
         no_backup=TRUE
         shift
-        ;;&
+        ;;
 
-      *)
-        # TODO find a way to avoid this empty string check
-        if [ ! -z $1 ]; then
-          echo "-${1}-"
-          invalid_flag_error
-          exit 1;
+      -b|--my-flag-with-argument)
+        if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
+          backup_file=$2
+          shift 2
+        else
+          echo "Error: Argument for $1 is missing" >&2
+          exit 1
         fi
-      ;;
+        ;;
+
+      -*|--*=) # unsupported flags
+        invalid_flag_error $1
+        exit 1
+        ;;
+
+      *) # preserve positional arguments
+        PARAMS="$PARAMS $1"
+        shift
+        ;;
     esac
-  done 
+  done
+  eval set -- "$PARAMS"
 }
-handle_input $@
+parse_args $@
 
 
 if ! test -f ".env"; then 
