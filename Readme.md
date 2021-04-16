@@ -71,7 +71,7 @@ project as a WordPress theme.
 1. Visit your site or press F5\* and see your pre-existing React project being
    served by WordPress.
 
-### Usage with pre-existing WordPress database image
+### Usage with a pre-existing WordPress database image
 
 If you want to use a pre-existing WordPress database image, follow the steps
 below:
@@ -88,7 +88,7 @@ below:
 
 ## Scripts
 
-The repo comes with a few helpful scripts that will automate common and
+The repo comes with some few helpful scripts that will automate common and
 cumbersome dev and backup tasks.
 
 - `bootstrap.sh` helps you set your theme name and get your dependencies. Using
