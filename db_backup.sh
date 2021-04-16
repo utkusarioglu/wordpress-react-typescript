@@ -11,7 +11,7 @@ cat >&2 << EOF
 Operation failed. $1 is not a recognized flag. 
 Available flags are listed below:
 
--f, --filename : Custom filename for the backup file that will be created
+-f, --filename [sql filename]: Custom filename for the backup file that will be created
 
 EOF
 }
