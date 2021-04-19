@@ -25,8 +25,14 @@ Please start a separate terminal, and run this script from the host.
 EOF
 }
 
-# Vars
+# Error checking for whether script is run inside the devcontainer
 repo_name="$(basename "$PWD")"
+if [ $repo_name == 'workspace' ]; then
+  running_inside_container_error
+  exit 1
+fi
+
+# Vars
 date=`date +%Y%m%d-%H%M%S`
 backup_file_name="${date}.sql"
 
@@ -60,11 +66,7 @@ function parse_args {
 parse_args $@
 
 
-# Error checking for whether script is run inside the devcontainer
-if [ $repo_name == 'workspace' ]; then
-  running_inside_container_error
-  exit 1
-fi
+
 
 echo "Creating ${backup_file_name} inside ${HOST_BACKUPS_DIR}"
 
