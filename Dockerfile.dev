@@ -3,6 +3,7 @@ FROM wordpress
 RUN apt update
 RUN apt install git-all -y
 RUN apt install nodejs -y
+RUN apt install zip -y
 
 # Yarn
 RUN apt install gnupg -y
