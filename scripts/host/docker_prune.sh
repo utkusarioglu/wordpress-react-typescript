@@ -2,6 +2,7 @@
 
 source scripts/host/check_env.sh
 source .env
+source scripts/host/vars.sh
 
 # Vars
 no_backup=FALSE
@@ -47,9 +48,9 @@ if [[ $no_backup == TRUE ]]; then
   echo "Skipping db backup creation upon user command"
 else
   if [ -z $backup_file ]; then
-    bash ./db_backup.sh
+    bash "${HOST_SCRIPTS}/db_backup.sh"
   else 
-    bash ./db_backup.sh -f $backup_file
+    bash "${HOST_SCRIPTS}/db_backup.sh" -f $backup_file
   fi
 fi
 
@@ -57,7 +58,7 @@ echo "Cleaning containers, volumes, and networks"
 
 for command in 'stop' 'rm';
 do
-  docker container $command "${THEME_NAME}__wp" "${THEME_NAME}__db" 1> /dev/null
+  docker container $command "${THEME_NAME}__wp__dev" "${THEME_NAME}__db__dev" 1> /dev/null
 done;  
 
 repo_name="$(basename "$PWD")"

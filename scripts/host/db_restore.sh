@@ -68,7 +68,7 @@ if [ -z "$backup_file" ]; then
 fi
 
 repo_name="$(basename "$PWD")"
-container_name="${THEME_NAME}__db"
+container_name="${THEME_NAME}__db__dev"
 container_backup_path="${CONTAINER_BACKUPS_DIR}/${backup_file}"
 
 cat << EOF
