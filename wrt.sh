@@ -30,6 +30,12 @@ function parse_args {
         exit
         ;;
 
+      docker)
+        shift
+        bash "$PRODUCTION_SCRIPTS/production.sh" $@
+        exit
+        ;;
+
       -*|--*=) # unsupported flags
         invalid_flag_error $1
         exit 1
