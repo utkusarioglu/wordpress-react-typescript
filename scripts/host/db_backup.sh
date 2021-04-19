@@ -3,7 +3,7 @@
 source scripts/host/check_env.sh
 source .env
 source scripts/host/sanitize_sql_filename.sh
-source scripts/host/vars.sh
+source scripts/shared/vars.sh
 
 function invalid_flag_error {
 cat >&2 << EOF

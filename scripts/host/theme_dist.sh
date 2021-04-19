@@ -1,6 +1,6 @@
 #! /bin/bash
 
-source scripts/host/vars.sh
+source scripts/shared/vars.sh
 
 "$HOST_SCRIPTS/theme_build.sh"
 

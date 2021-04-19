@@ -2,7 +2,7 @@
 
 source scripts/host/check_env.sh
 source .env
-source scripts/host/vars.sh
+source scripts/shared/vars.sh
 
 # Vars
 no_backup=FALSE

@@ -1,6 +1,6 @@
 #! /bin/bash
 
-source scripts/host/vars.sh
+source scripts/shared/vars.sh
 
 function parse_args {
   PARAMS=""

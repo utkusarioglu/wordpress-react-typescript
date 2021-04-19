@@ -2,7 +2,7 @@
 
 source scripts/host/check_env.sh
 source .env
-source scripts/host/vars.sh
+source scripts/shared/vars.sh
 
 echo "Setting theme name as ${THEME_NAME}..."
 cd $THEME_DIR
