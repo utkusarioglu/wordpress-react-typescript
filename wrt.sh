@@ -30,7 +30,7 @@ function parse_args {
         exit
         ;;
 
-      docker)
+      production)
         shift
         bash "$PRODUCTION_SCRIPTS/production.sh" $@
         exit
