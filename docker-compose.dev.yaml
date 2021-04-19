@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    container_name: ${THEME_NAME}__wp
+    container_name: ${THEME_NAME}__wp__dev
     restart: on-failure
     stdin_open: true
     ports:
@@ -31,7 +31,7 @@ services:
 
   db:
     image: mysql:5.7
-    container_name: ${THEME_NAME}__db
+    container_name: ${THEME_NAME}__db__dev
     restart: on-failure
     environment:
       MYSQL_DATABASE: ${DB_NAME}
