@@ -1,6 +1,29 @@
 #! /bin/bash
 
 source scripts/shared/vars.sh
+source scripts/shared/messages.sh
+source scripts/shared/parse_args.sh
+
+function title {
+  title_template "Api"
+}
+
+function commands_and_options {
+  cat << EOF
+Usage: wrt [options] [COMMAND]
+
+Commands:
+  bootstrap     Set the theme name and download the dependencies
+  db            Tools for managing the mysql database
+  theme         Build, clean, package the theme
+  docker        Manage project's docker containers
+  production    Communicate with the production environment, pull and push items
+
+Options:
+  -h, --help    Shows this help information
+
+EOF
+}
 
 function parse_args {
   PARAMS=""
@@ -8,45 +31,41 @@ function parse_args {
     case "$1" in
       bootstrap)
         shift
-        bash "$HOST_SCRIPTS/bootstrap.sh" $@
+        "$HOST_SCRIPTS/bootstrap.sh" $@
         exit
         ;;
 
       db)
         shift
-        bash "$HOST_SCRIPTS/db.sh" $@
+        "$HOST_SCRIPTS/db.sh" $@
         exit
         ;;
 
       theme)
         shift
-        bash "$HOST_SCRIPTS/theme.sh" $@
+        "$HOST_SCRIPTS/theme.sh" $@
         exit
         ;;
 
       docker)
         shift
-        bash "$HOST_SCRIPTS/docker.sh" $@
+        "$HOST_SCRIPTS/docker.sh" $@
         exit
         ;;
 
       production)
         shift
-        bash "$PRODUCTION_SCRIPTS/production.sh" $@
+        "$PRODUCTION_SCRIPTS/production.sh" $@
         exit
         ;;
-
-      -*|--*=) # unsupported flags
-        invalid_flag_error $1
-        exit 1
-        ;;
-
-      *) # preserve positional arguments
-        PARAMS="$PARAMS $1"
-        shift
-        ;;
+        
+      *)
+        parse_args_essential title commands_and_options $@
     esac
   done
   eval set -- "$PARAMS"
 }
+
 parse_args $@
+title
+commands_and_options

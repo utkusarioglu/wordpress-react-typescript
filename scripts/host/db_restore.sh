@@ -1,21 +1,31 @@
 #!/bin/bash
 
-source scripts/host/check_env.sh
+source scripts/shared/check_env.sh
 source .env
-source scripts/host/sanitize_sql_filename.sh
+source scripts/shared/sanitize_sql_filename.sh
 source scripts/shared/vars.sh
+source scripts/shared/messages.sh
+source scripts/shared/parse_args.sh
 
-function nonexistent_file_error {
-cat >&2 << EOF
+function title {
+  title_template "Database Restore Api"
+}
 
-Operation failed. The file "$backup_file" cannot be found in $HOST_BACKUPS_DIR.
-Please make sure that you have specified the correct file name and try again.
+function commands_and_options {
+  cat << EOF
+Usage: wrt db restore [options]
+
+Commands:
+  <none>        Run the restore operation with most recent sql backup
+
+Options:
+  -f, --filename [sql filename]    Restores the given sql file
+  -h, --help                       Shows this help information
 
 EOF
 }
 
-# Vars
-backup_file=""
+BACKUP_FILE=""
 
 function parse_args {
   PARAMS=""
@@ -23,11 +33,11 @@ function parse_args {
     case "$1" in
       -f|--filename)
         if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
-          backup_file="$(sanitize_sql_filename $2)"
+          BACKUP_FILE="$(sanitize_sql_filename $2)"
 
           # check whether the file exists, exit if it doesn't
-          if ! test -f "$HOST_BACKUPS_DIR/$backup_file"; then
-            nonexistent_file_error
+          if ! test -f "$HOST_BACKUPS_DIR/$BACKUP_FILE"; then
+            nonexistent_file_error $BACKUP_FILE $HOST_BACKUPS_DIR 
             exit 1
           fi
 
@@ -38,48 +48,45 @@ function parse_args {
         fi
         ;;
 
-      -*|--*=) # unsupported flags
-        invalid_flag_error $1
-        exit 1
-        ;;
-
-      *) # preserve positional arguments
-        PARAMS="$PARAMS $1"
-        shift
-        ;;
+      *)
+        parse_args_essential title commands_and_options $@
     esac
   done
   eval set -- "$PARAMS"
 }
-parse_args $@
 
-if [ -z "$backup_file" ]; then
-  echo "Finding newest backup from: $HOST_BACKUPS_DIR" 
+function do_backup_restore {
+  if [ -z "$BACKUP_FILE" ]; then
+    echo "Finding newest backup from: $HOST_BACKUPS_DIR" 
 
-  if [ -z "$1" ]; then
-      unset -v host_backup_path
-      for file in "$HOST_BACKUPS_DIR"/*; do
-      [[ $file -nt $LATEST_FILE ]] && host_backup_path=$file
-      done
-  else
-      host_backup_path=$1
+    if [ -z "$1" ]; then
+        unset -v host_backup_path
+        for file in "$HOST_BACKUPS_DIR"/*; do
+        [[ $file -nt $LATEST_FILE ]] && host_backup_path=$file
+        done
+    else
+        host_backup_path=$1
+    fi
+    BACKUP_FILE="${host_backup_path##*/}"
   fi
-  backup_file="${host_backup_path##*/}"
-fi
 
-repo_name="$(basename "$PWD")"
-container_name="${THEME_NAME}__db__dev"
-container_backup_path="${CONTAINER_BACKUPS_DIR}/${backup_file}"
+  repo_name="$(basename "$PWD")"
+  container_name="${THEME_NAME}__db__dev"
+  container_backup_path="${CONTAINER_BACKUPS_DIR}/${BACKUP_FILE}"
 
-cat << EOF
-Restoring Db backup...
-from: $HOST_BACKUPS_DIR/$backup_file
-to: $container_name
+  cat << EOF
+  Restoring Db backup...
+  from: $HOST_BACKUPS_DIR/$BACKUP_FILE
+  to: $container_name
 EOF
 
-docker exec $container_name bash -c \
-  "mysql \
-    -u$DB_USER \
-    -p$DB_PASS \
-    $DB_NAME < /$container_backup_path \
-    &> /dev/null" 
+  docker exec $container_name bash -c \
+    "mysql \
+      -u$DB_USER \
+      -p$DB_PASS \
+      $DB_NAME < /$container_backup_path \
+      &> /dev/null"
+}
+
+parse_args $@
+do_backup_restore

@@ -1,6 +1,27 @@
 #! /bin/bash
 
 source scripts/shared/vars.sh
+source scripts/shared/messages.sh
+source scripts/shared/parse_args.sh
+
+function title {
+  title_template "Database Api"
+}
+
+function commands_and_options {
+  cat << EOF
+Usage: wrt db [options] [COMMAND]
+
+Commands:
+  backup        Create a backup of the current wp database 
+  replace-url   Replace the wp home url
+  restore       Restore a sql backup to your wp instance
+
+Options:
+  -h, --help    Shows this help information
+
+EOF
+}
 
 function parse_args {
   PARAMS=""
@@ -24,17 +45,13 @@ function parse_args {
         exit
         ;;
 
-      -*|--*=) # unsupported flags
-        invalid_flag_error $1
-        exit 1
-        ;;
-
-      *) # preserve positional arguments
-        PARAMS="$PARAMS $1"
-        shift
-        ;;
+      *)
+        parse_args_essential title commands_and_options $@
     esac
   done
   eval set -- "$PARAMS"
 }
+
 parse_args $@
+title
+commands_and_options

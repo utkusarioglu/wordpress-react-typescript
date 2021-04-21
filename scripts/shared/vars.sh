@@ -4,6 +4,6 @@
 
 HOST_BACKUPS_DIR=backups/sql
 CONTAINER_BACKUPS_DIR=backups/sql
-THEME_DIR=theme/react-src
+THEME_SRC_DIR=theme/react-src
 HOST_SCRIPTS=scripts/host
 PRODUCTION_SCRIPTS=scripts/production

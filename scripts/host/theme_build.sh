@@ -1,25 +1,45 @@
 #!/bin/bash
 
-source scripts/host/check_env.sh
+source scripts/shared/check_env.sh
 source .env
+source scripts/shared/vars.sh
+source scripts/shared/messages.sh
+source scripts/shared/parse_args.sh
 
-# Remove old build
-echo "Removing old build..."
-rm -rf build
+function title {
+  title_template "Theme Build Api"
+}
 
-# handle build
-echo "Building theme ${THEME_NAME}"
-cd theme/react-src 
-yarn build
-cd ../..
+function commands_and_options {
+  cat << EOF
+Usage: wrt theme build [options]
 
-# Remove irrelevant files
-echo "Removing clutter..."
-cd build
-rm ./!READY_TO_DEPLOY!.txt
+Commands:
+  <none>        Run the build operation
 
-cat << EOF 
-
-Build complete. You can find your theme in "build".
+Options:
+  -h, --help    Shows this help information
 
 EOF
+}
+
+function do_theme_build {
+  # Remove old build
+  echo "Removing old build..."
+  rm -rf build
+
+  # handle build
+  echo "Building theme ${THEME_NAME}"
+  cd theme/react-src 
+  yarn build
+  cd ../..
+
+  # Remove irrelevant files
+  echo "Removing clutter..."
+  cd build
+  rm ./!READY_TO_DEPLOY!.txt
+}
+
+parse_args_basic $@
+do_theme_build
+theme_built_message

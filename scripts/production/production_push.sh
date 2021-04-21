@@ -1,6 +1,28 @@
 #! /bin/bash
 
 source scripts/shared/vars.sh
+source scripts/shared/messages.sh
+source scripts/shared/parse_args.sh
+
+function title {
+  title_template "Production Push Api"
+}
+
+function commands_and_options {
+  cat << EOF
+Usage: wrt production push [options] [COMMAND]
+
+Commands:
+  sql-backup    Push a sql backup to be used in production
+  uploads       Push wp uploads folder content to production
+  plugins       Push wp plugins folder content to production
+  theme         Push wp theme that you are developing to production
+
+Options:
+  -h, --help    Shows this help information
+
+EOF
+}
 
 PRODUCTION_PUSH_PREFIX="$PRODUCTION_SCRIPTS/production_push_"
 
@@ -20,23 +42,25 @@ function parse_args {
         exit
         ;;
 
+      plugins)
+        shift
+        "${PRODUCTION_PUSH_PREFIX}plugins.sh" $@
+        exit
+        ;;
+
       theme)
         shift
         "${PRODUCTION_PUSH_PREFIX}theme.sh" $@
         exit
         ;;
 
-      -*|--*=) # unsupported flags
-        invalid_flag_error $1
-        exit 1
-        ;;
-
-      *) # preserve positional arguments
-        PARAMS="$PARAMS $1"
-        shift
-        ;;
+      *)
+        parse_args_common title commands_and_options $@
     esac
   done
   eval set -- "$PARAMS"
 }
+
 parse_args $@
+title
+commands_and_options

@@ -1,21 +1,39 @@
 #!/bin/bash
 
-source scripts/host/check_env.sh
+source scripts/shared/check_env.sh
 source .env
 source scripts/shared/vars.sh
+source scripts/shared/messages.sh
+source scripts/shared/parse_args.sh
 
-echo "Setting theme name as ${THEME_NAME}..."
-cd $THEME_DIR
-sed -i "/homepage/c\  \"homepage\": \"\/wp-content\/themes\/$THEME_NAME\"," ./package.json
-# Notice that this one doesn't add a comma at the end
-sed -i "/homepage/c\  \"homepage\": \"\/wp-content\/themes\/$THEME_NAME\"" ./user.prod.json 
+function title {
+  title_template "Bootstrap Api"
+}
 
-echo "Installing NPM packages using Yarn..."
-yarn
+function commands_and_options {
+  cat << EOF
+Usage: wrt bootstrap [options]
 
-cat << EOF
+Commands:
+  <none>        Run the bootstrap operation
 
-Bootstrapping complete. Now you can press ctrl + shift + p and select 
-"Remote-Containers: Reopen in Container" to open the repo in a devcontainer.
+Options:
+  -h, --help    Shows this help information
 
 EOF
+}
+
+function do_bootstrap {
+  echo "Setting theme name as ${THEME_NAME}..."
+  cd $THEME_SRC_DIR
+  sed -i "/homepage/c\  \"homepage\": \"\/wp-content\/themes\/$THEME_NAME\"," ./package.json
+  # Notice that this one doesn't add a comma at the end
+  sed -i "/homepage/c\  \"homepage\": \"\/wp-content\/themes\/$THEME_NAME\"" ./user.prod.json 
+
+  echo "Installing NPM packages using Yarn..."
+  yarn
+}
+
+parse_args_basic $@
+do_bootstrap
+bootstrap_complete_message

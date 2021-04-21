@@ -1,20 +1,25 @@
 #!/bin/bash
 
-source scripts/host/check_env.sh
+source scripts/shared/check_env.sh
 source .env
+source scripts/shared/messages.sh
+source scripts/shared/parse_args.sh
 
-function invalid_flag_error {
-cat >&2 << EOF
+function title {
+  title_template "Database Url Replacement Api"
+}
 
-Operation failed. $1 is not a recognized flag. 
-Available flags are listed below:
+function commands_and_options {
+  cat << EOF
+Usage: wrt db replace-url [options]
 
--n, --new-url [url]: Url to which the current home url shall be corrected
+Options:
+  -n, --new-url [url]       Url to which the current home url shall be 
+                            corrected
 
 EOF
 }
 
-# Vars
 NEW_URL=localhost
 
 function parse_args {
@@ -31,22 +36,15 @@ function parse_args {
         fi
         ;;
 
-      -*|--*=) # unsupported flags
-        invalid_flag_error $1
-        exit 1
-        ;;
-
-      *) # preserve positional arguments
-        PARAMS="$PARAMS $1"
-        shift
-        ;;
+      *)
+        parse_args_essential title commands_and_options $@
     esac
   done
   eval set -- "$PARAMS"
 }
-parse_args $@
 
-read -r -d '' COMMAND << EOM
+function do_replace_url {
+  read -r -d '' COMMAND << EOM
   /scripts/replace_url.sh \
     --user root \
     --pass ${DB_ROOT_PASS} \
@@ -54,5 +52,9 @@ read -r -d '' COMMAND << EOM
     --new-url ${NEW_URL}
 EOM
 
-docker exec "${THEME_NAME}__db" bash -c "$COMMAND" \
-  &> /dev/null
+  docker exec "${THEME_NAME}__db__dev" bash -c "$COMMAND" \
+    &> /dev/null
+}
+
+parse_args $@
+do_replace_url

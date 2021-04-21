@@ -1,6 +1,29 @@
 #! /bin/bash
 
 source scripts/shared/vars.sh
+source scripts/shared/messages.sh
+source scripts/shared/parse_args.sh
+
+function title {
+  title_template "Theme Api"
+}
+
+function commands_and_options {
+  cat << EOF
+Usage: wrt theme [options] [COMMAND]
+
+Commands:
+  clean         Remove runtime files created by React WordPress 
+                theme scripts.
+  build         Build the WordPress theme and place it inside 
+                <root>/build directory
+  dist          Create theme package at <root>/dist.zip
+
+Options:
+  -h, --help    Shows this help information
+
+EOF
+}
 
 function parse_args {
   PARAMS=""
@@ -18,23 +41,19 @@ function parse_args {
         exit
         ;;
 
-      dist)
+      package)
         shift
-        "$HOST_SCRIPTS/theme_dist.sh" $@
+        "$HOST_SCRIPTS/theme_package.sh" $@
         exit
         ;;
 
-      -*|--*=) # unsupported flags
-        invalid_flag_error $1
-        exit 1
-        ;;
-
-      *) # preserve positional arguments
-        PARAMS="$PARAMS $1"
-        shift
-        ;;
+      *)
+        parse_args_common title commands_and_options $@
     esac
   done
   eval set -- "$PARAMS"
 }
+
 parse_args $@
+title
+commands_and_options
