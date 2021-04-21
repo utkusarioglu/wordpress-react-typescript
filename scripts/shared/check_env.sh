@@ -15,8 +15,9 @@ if [ -z $THEME_NAME ]; then
   exit 1
 fi
 
-if ! [[ $THEME_NAME =~ ^[a-zA-Z0-9]+$ ]]; then
-  env_file_value_check_error '.env/THEME_NAME can only contain alphanumeric characters'
+if ! [[ $THEME_NAME =~ ^[a-zA-Z0-9-]+$ ]]; then
+  env_file_value_check_error \
+    '.env/THEME_NAME can only contain alphanumeric characters and dash (-)'
   exit 1
 fi
 
