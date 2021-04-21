@@ -33,6 +33,15 @@ After creating the .env file, please rerun this script
 EOF
 }
 
+function env_file_value_check_error {
+cat >&2 << EOF
+
+Operation failed. $1. 
+Please update your .env file and then rerun this script
+
+EOF
+}
+
 function missing_argument_error {
   echo "Error: Argument for $1 is missing" >&2
 }
