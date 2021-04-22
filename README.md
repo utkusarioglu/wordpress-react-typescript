@@ -21,6 +21,9 @@ project.
    - `DB_NAME`: Name for the schema that WordPress will use
    - `DB_ROOT_PASS`: MySql root user password
 
+   > :warning: For safety reasons, the theme name property can only consists of
+   > the characters: a-z A-Z 0-9 and dash (-)
+
 1. Run `./wrt.sh bootstrap` to set the theme name and get project dependencies
 
 1. Start your devcontainer. Note that this may take a while as some packages
@@ -89,8 +92,9 @@ below:
 ## Api
 
 The repo comes with tools that will help you manage your theme, WordPress
-database backups, and production environment; if you choose to populate the
-related script files.
+database backups, docker containers. If you choose to populate the related
+script files, it can also structure your access to your project's production
+environment.
 
 Your entrypoint for the api is `./wrt.sh`. You can set an alias through the
 command `alias wrt="./wrt.sh"`, which would make typing out the commands easier.
@@ -108,8 +112,8 @@ Top-level commands for the wrt api are listed below:
 
 For a detailed explanation of the api, please click [here](./API.md).
 
-All the listed commands have their own help documentation to which you can reach
-through the flags `-h` and `--help`.
+All endpoints except for a few within the `production` api have their own help
+documentation. You can access these using the flags `-h` or `--help`.
 
 ## Repo management note
 

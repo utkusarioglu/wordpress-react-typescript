@@ -9,7 +9,7 @@ alias wrt="./wrt.sh"
 
 ## Getting command line help
 
-All methods with some exceptions under the `production` parent, offer help
+All methods with some exceptions under the `production` api, offer help
 documentation through `-h` and `--help` flags. You can refer to these for
 on-the-fly refreshers.
 
@@ -34,9 +34,6 @@ The top-level api consists of the following commands:
 
 Sets the theme name using the `.env/THEME_NAME` variable in multiple locations.
 It will also install all the NPM dependencies by using yarn.
-
-> :warning: For safety reasons, the theme name property can only carry a-z A-Z
-> 0-9 and dash (-)
 
 | Command | Action                      |
 | ------- | --------------------------- |
@@ -78,18 +75,20 @@ However, it's possible to define a custom name through the flag `-f`.
 
 #### wrt db replace-url [options]
 
-If you are doing development on a preexisting database image, it's possible that
-you may see your url being rewritten and followed by your browser telling you
-the page is not working. This is because WordPress is imposing the `home` value
-inside `wp_options` schema.
+Replaces the WordPress `home` url value in settings, posts and all other places
+it appears. By default, the api will replace `home` with `localhost` but it's
+possible to define a custom value through the flag `-n`.
 
-What this command does is to replace the WordPress `home` url setting in all
-locations that it appears. By default, the script will replace `home` with
-`localhost` but it's possible to define a custom value through the flag `-n`:
+If you are doing development on a pre-existing database image, it's possible
+that you may see your url being rewritten, followed by your browser telling you
+the page is not working. This is because WordPress is redirecting your browser
+using the `home` value inside `wp_options` schema, which results in a failing
+page load. Replacing the `home` url fixes this issue.
 
 After the development on your WordPress project is complete, you may have the
 need to run the same command to replace your dev address with your site's public
-address.
+address. Otherwise, your production instance may redirect the client browser to
+`localhost` or any other setting you use in your dev environment.
 
 | Command | Action                            |
 | ------- | --------------------------------- |
@@ -142,8 +141,8 @@ Well, just one tool for now...
 #### wrt docker prune [options]
 
 By default, this repo does not clean up its devcontainers. Instead, you are
-offered the `prune` command to easily stop and remove the containers, volumes,
-and networks associated with your development environment.
+offered the `prune` api to easily stop and remove the containers, volumes, and
+networks associated with your development environment.
 
 Before the removal, the command also takes a database backup and puts it inside
 `backups/sql`.
@@ -161,17 +160,19 @@ Before the removal, the command also takes a database backup and puts it inside
 ### wrt production [options] [command]
 
 Api for controlling production side for your project. This api mostly consists
-of placeholder scripts which you can alter to easily communicate with your
-production environment.
+of placeholder scripts which you can alter to create an intuitive access to your
+production files and settings.
 
 This repo was written with the assumption that after the development is
-complete, the WordPress theme and data created will be running on a traditional
-environment with no containers, no orchestration and just a single instance. So,
-the api was designed to account for pulling and pushing uploads, theme, and
-other components of the WordPress production in pieces.
+complete, the WordPress theme and the sql data created will be running on a
+traditional environment with no containers, no orchestration and just a single
+instance. So, the api was designed to account for pulling and pushing uploads,
+theme, and other components of the WordPress production in pieces.
 
-A Docker push endpoint for wp and db images could be easily included in this
-repo. If you get to that before I do, you are very much welcome to send a PR.
+Though I see no reason why this repo could not be adapted to service a more
+scalable architecture. A Docker / Kubernetes push endpoint for images could be
+easily included in this repo. If you get to that before I do, you are very much
+welcome to send a PR.
 
 | Command | Action                                          |
 | ------- | ----------------------------------------------- |
@@ -191,13 +192,14 @@ initialization script that they require for their production environment. This
 may include creation of containers or migrating config files. The content of
 this file is up to the developer.
 
-The script file is located at: `scripts/production/production_init.sh`
+The placeholder script file is located at:
+`scripts/production/production_init.sh`
 
 #### wrt production pull [options] [command]
 
 A hierarchical parent for user populated scripts that pull items from the
-production environment. The paths for the script files that need to be edited
-for the apis to work is listed in the table below.
+production environment. The paths for the placeholder script files that need to
+be edited for the apis to work is listed in the table below.
 
 | Command    | Action                                         | File Path                                        |
 | ---------- | ---------------------------------------------- | ------------------------------------------------ |
@@ -213,8 +215,8 @@ for the apis to work is listed in the table below.
 #### wrt production push [options] [command]
 
 A hierarchical parent for user populated scripts that push items to the
-production environment. The paths for the script files that need to be edited
-for the apis to work is listed in the table below.
+production environment. The paths for the placeholder script files that need to
+be edited for the apis to work is listed in the table below.
 
 | Command    | Action                                              | File Path                                        |
 | ---------- | --------------------------------------------------- | ------------------------------------------------ |
@@ -272,7 +274,7 @@ Builds, minimizes the theme files and places them inside `build` folder.
 #### wrt theme package [options]
 
 Builds, minimizes and zips the theme files, creating a package that could be
-used by wordpress.org or by your WordPress installation.
+used by wordpress.org or by your own production WordPress instance.
 
 | Command | Action                      |
 | ------- | --------------------------- |
