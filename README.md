@@ -21,8 +21,8 @@ project.
    - `DB_NAME`: Name for the schema that WordPress will use
    - `DB_ROOT_PASS`: MySql root user password
 
-   > :warning: For safety reasons, the theme name property can only consists of
-   > the characters: a-z A-Z 0-9 and dash (-)
+   > :warning: For safety reasons, the `THEME_NAME` property can only consists
+   > of the characters: a-z A-Z 0-9 and dash (-)
 
 1. Run `./wrt.sh bootstrap` to set the theme name and get project dependencies
 
