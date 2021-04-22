@@ -91,7 +91,7 @@ below:
 ## Api
 
 The repo comes with tools that will help you manage your theme, WordPress
-database backups, docker containers. If you choose to populate the related
+database backups and docker containers. If you choose to populate the related
 script files, it can also structure your access to your project's production
 environment.
 
