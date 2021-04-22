@@ -46,7 +46,7 @@ function parse_args {
         ;;
 
       *)
-        parse_args_common title commands_and_options $@
+        parse_args_essential title commands_and_options $@
     esac
   done
   eval set -- "$PARAMS"
