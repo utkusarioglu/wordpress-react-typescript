@@ -13,6 +13,9 @@ function commands_and_options {
   cat << EOF
 Usage: wrt db replace-url [options]
 
+Commands:
+  (none)        Run the db backup operation
+
 Options:
   -n, --new-url [url]       Url to which the current home url shall be 
                             corrected

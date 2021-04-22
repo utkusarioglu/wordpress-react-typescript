@@ -14,10 +14,10 @@ Usage: wrt [options] [COMMAND]
 
 Commands:
   bootstrap     Set the theme name and download the dependencies
-  db            Tools for managing the mysql database
-  theme         Build, clean, package the theme
+  db            Tools for managing the wordpress mysql database
   docker        Manage project's docker containers
   production    Communicate with the production environment, pull and push items
+  theme         Build, clean, package the theme
 
 Options:
   -h, --help    Shows this help information

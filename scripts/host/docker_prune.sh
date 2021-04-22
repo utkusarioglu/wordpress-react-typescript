@@ -16,7 +16,7 @@ function commands_and_options {
 Usage: wrt docker prune [options]
 
 Commands:
-  <none>        Take a sql backup and then run the docker prune operation 
+  (none)        Take a sql backup and then run the docker prune operation 
 
 Options:
   -n, --no-backup                         Skip taking the sql backup

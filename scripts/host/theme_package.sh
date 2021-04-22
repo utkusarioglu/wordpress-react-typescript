@@ -13,7 +13,7 @@ function commands_and_options {
 Usage: wrt theme package [options]
 
 Commands:
-  <none>        Run the packaging operation
+  (none)        Run the packaging operation
 
 Options:
   -h, --help    Shows this help information

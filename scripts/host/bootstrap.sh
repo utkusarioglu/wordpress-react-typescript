@@ -15,7 +15,7 @@ function commands_and_options {
 Usage: wrt bootstrap [options]
 
 Commands:
-  <none>        Run the bootstrap operation
+  (none)        Run the bootstrap operation
 
 Options:
   -h, --help    Shows this help information

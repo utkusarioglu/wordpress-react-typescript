@@ -16,6 +16,9 @@ function commands_and_options {
   cat << EOF
 Usage: wrt db replace-url [options]
 
+Commands:
+  (none)        Run the db backup operation
+
 Options:
   -f, --filename [sql filename]     Custom filename for the backup file that 
                                     will be created

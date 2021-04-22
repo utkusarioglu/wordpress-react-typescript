@@ -13,7 +13,7 @@ function commands_and_options {
 Usage: wrt theme clean [options]
 
 Commands:
-  <none>        Run the clean operation
+  (none)        Run the clean operation
 
 Options:
   -h, --help    Shows this help information

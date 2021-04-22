@@ -16,7 +16,7 @@ function commands_and_options {
 Usage: wrt db restore [options]
 
 Commands:
-  <none>        Run the restore operation with most recent sql backup
+  (none)        Run the restore operation with most recent sql backup
 
 Options:
   -f, --filename [sql filename]    Restores the given sql file

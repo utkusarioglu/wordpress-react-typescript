@@ -13,9 +13,9 @@ function commands_and_options {
 Usage: wrt production [options] [COMMAND]
 
 Commands:
-  push          Upload items to your production environment
-  pull          Download items from your production environment
   init          Initialize your production environment
+  pull          Download items from your production environment
+  push          Upload items to your production environment
 
 Options:
   -h, --help    Shows this help information

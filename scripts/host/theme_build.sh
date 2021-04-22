@@ -15,7 +15,7 @@ function commands_and_options {
 Usage: wrt theme build [options]
 
 Commands:
-  <none>        Run the build operation
+  (none)        Run the build operation
 
 Options:
   -h, --help    Shows this help information
