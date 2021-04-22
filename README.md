@@ -15,14 +15,13 @@ project.
 
 1. Create an `.env` file with the following variables:
 
-   - `THEME_NAME`: The name for the theme that you are developing
+   - `THEME_NAME`: The name for the theme that you are developing. For safety
+     reasons, this property value can only consist of characters: a-z A-Z 0-9
+     and dash (-)
    - `DB_USER`: Username for WordPress' MySql access
    - `DB_PASS`: Password for WordPress' MySql access
    - `DB_NAME`: Name for the schema that WordPress will use
    - `DB_ROOT_PASS`: MySql root user password
-
-   > :warning: For safety reasons, the `THEME_NAME` property can only consists
-   > of the characters: a-z A-Z 0-9 and dash (-)
 
 1. Run `./wrt.sh bootstrap` to set the theme name and get project dependencies
 
