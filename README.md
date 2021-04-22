@@ -21,7 +21,7 @@ project.
    - `DB_NAME`: Name for the schema that WordPress will use
    - `DB_ROOT_PASS`: MySql root user password
 
-1. Run `bootstrap.sh` to set the theme name and get project dependencies
+1. Run `./wrt.sh bootstrap` to set the theme name and get project dependencies
 
 1. Start your devcontainer. Note that this may take a while as some packages
    will be added to the WordPress image (such as Git).
@@ -76,59 +76,40 @@ project as a WordPress theme.
 If you want to use a pre-existing WordPress database image, follow the steps
 below:
 
-1. Place your db backup in `backups/sql` and run `db_restore.sh`. You can refer
-   to the **Scripts** section of this readme to learn more about the usage of
-   the said script.
+1. Place your db backup in `backups/sql` and run `./wrt.sh db restore`. You can
+   refer to the **Scripts** section of this readme to learn more about the usage
+   of the said script.
 
 1. You may have the need to update the WordPress home url. For this, you can run
-   `db_replace_url.sh` to correct the previous WordPress home url with the one
-   you want to use for your dev environment. This may be localhost or some
+   `./wrt.sh db replace-url` to correct the previous WordPress home url with the
+   one you want to use for your dev environment. This may be localhost or some
    ip/url you'd like to set. Please refer to **Scripts** section of this readme
    to learn more about the said script.
 
-## Scripts
+## Api
 
-The repo comes with some few helpful scripts that will automate common and
-cumbersome dev and backup tasks.
+The repo comes with tools that will help you manage your theme, WordPress
+database backups, and production environment; if you choose to populate the
+related script files.
 
-- `bootstrap.sh` helps you set your theme name and get your dependencies. Using
-  this script is recommended as without your theme name properly set, you will
-  have issues viewing your site.
+Your entrypoint for the api is `./wrt.sh`. You can set an alias through the
+command `alias wrt="./wrt.sh"`, which would make typing out the commands easier.
 
-- `docker_prune.sh` removes all containers, volumes, networks associated with
-  your development environment. It will also take a sql backup before removing
-  the db volume. This script takes some args:
+Top-level commands for the wrt api are listed below:
 
-  - `-n`, `--no-backup` (optional): This will make the script disable automatic
-    backup feature.
-  - `-f`, `--filename` `[filename]` (optional): Allows setting a custom filename
-    for the backup file. Read `db_backup.sh` section for details
+| Command    | Action                                                                     |
+| ---------- | -------------------------------------------------------------------------- |
+| (none)     | Show help information                                                      |
+| bootstrap  | Set the theme name and download the dependencies                           |
+| db         | Tools for managing the WordPress MySQL database                            |
+| docker     | Manage your project's Docker containers                                    |
+| production | Communicate with the project's production environment, pull and push items |
+| theme      | Build, clean, package the theme                                            |
 
-- `theme_clean.sh` removes runtime files created by React WordPress theme
-  scripts.
+For a detailed explanation of the api, please click [here](./API.md).
 
-- `theme_build.sh` builds the WordPress theme and places it inside `build`
-  directory.
-
-- `db_backup.sh` creates a backup of the WordPress database and places it inside
-  `backups/sql` directory. If no particular filename is specified, the names of
-  files generated will follow the pattern: `[date]-[time].sql`. This script
-  takes some args:
-
-  - `-f`, `--filename` `[filename]` (optional): Allows setting a custom filename
-    for the backup file.
-
-- `db_restore.sh` restores the latest or any other specified backup inside
-  `backups/sql`. This script takes some args:
-
-  - `-f`, `--filename` `[filename]` (optional): Allows setting a custom sql file
-    from which to restore the db data. If this value is not specified, the
-    latest sql file will be restored.
-
-- `db_replace_url.sh` replaces the current WordPress home url with the url
-  specified. This script takes a single arg:
-  - `-n`, `--new-url` `[url]`: The url that will be written instead of WordPress
-    home url
+All the listed commands have their own help documentation to which you can reach
+through the flags `-h` and `--help`.
 
 ## Repo management note
 
