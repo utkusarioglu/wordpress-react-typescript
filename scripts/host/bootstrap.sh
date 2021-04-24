@@ -6,6 +6,8 @@ source scripts/shared/vars.sh
 source scripts/shared/messages.sh
 source scripts/shared/parse_args.sh
 
+DEV_COMPOSE_FILE="${PWD}/docker-compose.dev.yaml"
+
 function title {
   title_template "Bootstrap Api"
 }
@@ -32,7 +34,6 @@ function do_bootstrap {
 
   echo "Installing NPM packages using Yarn, this may take a while..."
 
-  DEV_COMPOSE_FILE="${PWD}/docker-compose.dev.yaml"
   docker-compose -f $DEV_COMPOSE_FILE up -d
   sleep 10 # TODO replace this with a more elegant line, maybe something that checks docker logs
   docker exec -it ${THEME_NAME}__wp__dev bash -c "cd wp-content/themes/${THEME_NAME}/react-src && yarn"
