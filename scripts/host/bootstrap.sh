@@ -7,6 +7,7 @@ source scripts/shared/messages.sh
 source scripts/shared/parse_args.sh
 
 DEV_COMPOSE_FILE="${PWD}/docker-compose.dev.yaml"
+THEMES_DIR=/var/www/html/wp-content/themes
 
 function title {
   title_template "Bootstrap Api"
@@ -36,7 +37,7 @@ function do_bootstrap {
 
   docker-compose -f $DEV_COMPOSE_FILE up -d
   sleep 10 # TODO replace this with a more elegant line, maybe something that checks docker logs
-  docker exec -it ${THEME_NAME}__wp__dev bash -c "cd wp-content/themes/${THEME_NAME}/react-src && yarn"
+  docker exec -it ${THEME_NAME}__wp__dev bash -c "cd ${THEMES_DIR}/${THEME_NAME}/react-src && yarn"
   docker-compose -f $DEV_COMPOSE_FILE down 
 }
 
