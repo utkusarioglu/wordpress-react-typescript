@@ -55,6 +55,15 @@ Please start a separate terminal, and run this script from the host.
 EOF
 }
 
+function running_inside_host_error {
+cat >&2 << EOF
+
+Operation failed. You cannot run this script while inside the host.
+Please start your devcontainer and then rerun your command.
+
+EOF
+}
+
 function nonexistent_file_error {
 cat >&2 << EOF
 
