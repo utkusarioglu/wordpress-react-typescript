@@ -48,12 +48,13 @@ It will also install all the NPM dependencies by using yarn.
 Hierarchical parent for controlling devcontainer for WordPress database. The
 children consist of the following commands:
 
-| Command          | Action                                     |
-| ---------------- | ------------------------------------------ |
-| (none)           | Show help information                      |
-| backup           | Create a backup of the current wp database |
-| restore          | Restore a sql backup to your wp instance   |
-| replace-home-url | Replace the wp home url                    |
+| Command          | Action                                         |
+| ---------------- | ---------------------------------------------- |
+| (none)           | Show help information                          |
+| backup           | Create a backup of the current wp database     |
+| get-home-url     | Return the currently active WordPress home url |
+| restore          | Restore a sql backup to your wp instance       |
+| replace-home-url | Replace the wp home url                        |
 
 | Flags      | Params | Action                |
 | ---------- | ------ | --------------------- |
@@ -72,8 +73,25 @@ However, it's possible to define a custom name through the flag `-f`.
 | Flags          | Params         | Action                                                   |
 | -------------- | -------------- | -------------------------------------------------------- |
 | -f, --filename | [sql filename] | Custom filename for the backup file that will be created |
+| -h, --help     |                | Show help information                                    |
 
-#### wrt db replace-url [options]
+#### wrt db get-home-url [options]
+
+Returns the currently active WordPress home url. If this setting doesn't
+coincide with the url that you are using to browse to your site, then you won't
+be able to so open most pages as WordPress will redirect the request to the home
+url. You can change the home url setting to any address that you need using
+`wrt db replace-home-url` api.
+
+| Command | Action                                         |
+| ------- | ---------------------------------------------- |
+| (none)  | Return the currently active WordPress home url |
+
+| Flags      | Params | Action                |
+| ---------- | ------ | --------------------- |
+| -h, --help |        | Show help information |
+
+#### wrt db replace-home-url [options]
 
 Replaces the WordPress `home` url value in settings, posts and all other places
 it appears. By default, the api will replace `home` with `localhost` but it's

@@ -45,6 +45,12 @@ function parse_args {
         exit
         ;;
 
+      get-home-url)
+        shift
+        "$HOST_SCRIPTS/db_get_home_url.sh" $@
+        exit
+        ;;
+
       *)
         parse_args_essential title commands_and_options $@
     esac
