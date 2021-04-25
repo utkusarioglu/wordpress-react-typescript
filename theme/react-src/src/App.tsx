@@ -7,12 +7,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h2>{window.config.pageTitle}</h2>
-        <a
-          className="App-link"
-          href="wp-admin"
-          rel="noopener noreferrer"
-        >
+        <h2 dangerouslySetInnerHTML={{ __html: window.config.pageTitle }} />
           visit wp-admin
         </a>
       </header>
