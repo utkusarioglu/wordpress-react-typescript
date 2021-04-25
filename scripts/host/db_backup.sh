@@ -7,6 +7,9 @@ source scripts/shared/vars.sh
 source scripts/shared/messages.sh
 source scripts/shared/parse_args.sh
 source scripts/shared/exit_if_in_devcontainer.sh
+source scripts/shared/check_ownership.sh
+
+check_ownership "$HOST_BACKUPS_DIR"
 
 function title {
   title_template "Database Backup Api"
