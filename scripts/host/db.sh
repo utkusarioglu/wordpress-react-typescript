@@ -13,9 +13,9 @@ function commands_and_options {
 Usage: wrt db [options] [COMMAND]
 
 Commands:
-  backup        Create a backup of the current wp database 
-  replace-url   Replace the wp home url
-  restore       Restore a sql backup to your wp instance
+  backup              Create a backup of the current wp database 
+  restore             Restore a sql backup to your wp instance
+  replace-home-url    Replace the wp home url
 
 Options:
   -h, --help    Shows this help information
@@ -41,13 +41,7 @@ function parse_args {
 
       replace-home-url)
         shift
-        "$HOST_SCRIPTS/db_replace_url.sh" $@
-        exit
-        ;;
-
-      replace-home-url)
-        shift
-        "$HOST_SCRIPTS/db_replace_url.sh" $@
+        "$HOST_SCRIPTS/db_replace_home_url.sh" $@
         exit
         ;;
 

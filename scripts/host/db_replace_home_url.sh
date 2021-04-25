@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source scripts/shared/exit_if_in_devcontainer.sh
 source scripts/shared/check_env.sh
 source .env
 source scripts/shared/messages.sh
@@ -48,7 +49,7 @@ function parse_args {
 
 function do_replace_url {
   read -r -d '' COMMAND << EOM
-  /scripts/replace_url.sh \
+  /scripts/replace_home_url.sh \
     --user root \
     --pass ${DB_ROOT_PASS} \
     --schema ${DB_NAME} \

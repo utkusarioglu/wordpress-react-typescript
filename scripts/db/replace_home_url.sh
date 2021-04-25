@@ -5,7 +5,7 @@
 # if no change is required, the script quits without accessing mysql
 
 source /scripts/clean_url.sh
-source /scripts/get_current_url.sh
+source /scripts/get_home_url.sh
 source /scripts/messages.sh
 
 function commands_and_options {
@@ -84,11 +84,16 @@ function parse_args {
   eval set -- "$PARAMS"
 }
 
-function do_replace_url {
-  CURRENT_URL=$(get_current_url $DB_USER $DB_PASS $DB_NAME)
+function do_replace_home_url {
+  CURRENT_URL=$(get_home_url $DB_USER $DB_PASS $DB_NAME)
+
+  if [ -z "$CURRENT_URL" ]; then
+    no_home_set_error
+    exit 1
+  fi
 
   # Checks whether the urls are different
-  if [ $CURRENT_URL == $NEW_URL ]; then
+  if [ "$CURRENT_URL" == "$NEW_URL" ]; then
       echo "Current url and replacement url are the same, quitting without change"
       exit 0
   else
@@ -119,8 +124,8 @@ EOM
     --user="$DB_USER" \
     --password="$DB_PASS" \
     --database="$DB_NAME" \
-    --execute="$REPLACE_QUERY"
+    --execute="$REPLACE_QUERY" > /dev/null
 }
 
 parse_args $@
-do_replace_url
+do_replace_home_url

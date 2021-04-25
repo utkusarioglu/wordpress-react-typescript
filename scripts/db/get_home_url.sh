@@ -4,7 +4,7 @@ source /scripts/clean_url.sh
 
 # Returns the currently active home url value from the wordpress database
 # ! function gets the db access params from environment variables supplied by docker
-function get_current_url() {
+function get_home_url() {
   read -r -d '' GET_HOME_QUERY << EOM
   SELECT option_value 
   FROM wp_options 

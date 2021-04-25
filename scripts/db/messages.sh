@@ -10,3 +10,12 @@ Please review your options below:
 
 EOF
 }
+
+function no_home_set_error {
+  cat >&2 << EOF
+
+Operation failed. There is no home setting in the database.
+Please check that you have completed your WordPress setup.
+
+EOF
+}
