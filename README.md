@@ -23,10 +23,10 @@ project.
    - `DB_NAME`: Name for the schema that WordPress will use
    - `DB_ROOT_PASS`: MySql root user password
 
-1. Run `./wrt.sh bootstrap` to set the theme name and get project dependencies
+1. Run `./wrt.sh bootstrap` to set the theme name, build the containers and
+   download the dependencies. This operation may take a while.
 
-1. Start your devcontainer. Note that this may take a while as some packages
-   will be added to the WordPress image (such as Git).
+1. Start your devcontainer.
 
 1. If you have a WordPress database backup, you can include the steps from the
    section **Usage with pre-existing database image** at this step. If you do,
