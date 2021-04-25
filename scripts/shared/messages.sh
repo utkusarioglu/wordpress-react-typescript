@@ -106,3 +106,24 @@ Bootstrapping complete. Now you can press ctrl + shift + p and select
 
 EOF
 }
+
+function permission_error {
+cat >&2 << EOF
+
+Operation halted. The path "$1" is owned by "$2". 
+Please check file permissions and ownership for "$1".
+Consider changing the user to "$USER" and then rerun 
+this command.
+
+EOF
+}
+
+function build_doesnt_exist_error {
+cat >&2 << EOF
+
+Operation halted. "build" folder doesn't exist.
+Please make sure that you have created a build before 
+pushing it to production.
+
+EOF
+}

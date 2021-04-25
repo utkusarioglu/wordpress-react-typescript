@@ -3,7 +3,12 @@
 # Not all (ie docker-compose) use variables to set these
 
 HOST_BACKUPS_DIR=backups/sql
-CONTAINER_BACKUPS_DIR=backups/sql
+HOST_UPLOADS_DIR=uploads
+HOST_PLUGINS_DIR=plugins
+
 THEME_SRC_DIR=theme/react-src
+
 HOST_SCRIPTS=scripts/host
 PRODUCTION_SCRIPTS=scripts/production
+
+CONTAINER_BACKUPS_DIR=backups/sql
