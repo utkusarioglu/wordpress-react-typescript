@@ -48,12 +48,12 @@ It will also install all the NPM dependencies by using yarn.
 Hierarchical parent for controlling devcontainer for WordPress database. The
 children consist of the following commands:
 
-| Command     | Action                                     |
-| ----------- | ------------------------------------------ |
-| (none)      | Show help information                      |
-| backup      | Create a backup of the current wp database |
-| replace-url | Replace the wp home url                    |
-| restore     | Restore a sql backup to your wp instance   |
+| Command          | Action                                     |
+| ---------------- | ------------------------------------------ |
+| (none)           | Show help information                      |
+| backup           | Create a backup of the current wp database |
+| restore          | Restore a sql backup to your wp instance   |
+| replace-home-url | Replace the wp home url                    |
 
 | Flags      | Params | Action                |
 | ---------- | ------ | --------------------- |

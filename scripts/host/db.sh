@@ -33,15 +33,21 @@ function parse_args {
         exit
         ;;
 
-      replace-url)
+      restore)
+        shift
+        "$HOST_SCRIPTS/db_restore.sh" $@
+        exit
+        ;;
+
+      replace-home-url)
         shift
         "$HOST_SCRIPTS/db_replace_url.sh" $@
         exit
         ;;
 
-      restore)
+      replace-home-url)
         shift
-        "$HOST_SCRIPTS/db_restore.sh" $@
+        "$HOST_SCRIPTS/db_replace_url.sh" $@
         exit
         ;;
 
