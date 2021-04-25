@@ -181,6 +181,10 @@ Api for controlling production side for your project. This api mostly consists
 of placeholder scripts which you can alter to create an intuitive access to your
 production files and settings.
 
+Wrt provides you with some utility scripts which you can use to integrate your
+production scripts with the general structure of this repo. To read more about
+these, please click [here](./SCRIPT_REFERENCE.md)
+
 This repo was written with the assumption that after the development is
 complete, the WordPress theme and the sql data created will be running on a
 traditional environment with no containers, no orchestration and just a single

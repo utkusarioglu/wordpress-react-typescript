@@ -114,6 +114,12 @@ For a detailed explanation of the api, please click [here](./API.md).
 All endpoints except for a few within the `production` api have their own help
 documentation. You can access these using the flags `-h` or `--help`.
 
+## Utility functions
+
+Wrt provides some utility functions to help you implement custom scripts for
+your own needs, as well as for use with `production` api scripts. You can find a
+list of these [here](./SCRIPT_REFERENCE.md)
+
 ## Repo management note
 
 Please note that React source files are not a separate repository. This entire
