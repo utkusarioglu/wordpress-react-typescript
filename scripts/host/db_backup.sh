@@ -8,8 +8,13 @@ source scripts/shared/messages.sh
 source scripts/shared/parse_args.sh
 source scripts/shared/exit_if_in_devcontainer.sh
 source scripts/shared/check_ownership.sh
+source scripts/shared/check_container_online.sh
 
-check_ownership "$HOST_BACKUPS_DIR"
+# check_ownership cannot check nested folders
+# because of this, it's not possible to use vars/HOST_BACKUPS_DIR
+# as this propert is set to be at backups/sql
+check_ownership "backups" 
+check_container_online "${THEME_NAME}__db__dev"
 
 function title {
   title_template "Database Backup Api"

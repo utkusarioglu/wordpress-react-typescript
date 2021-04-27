@@ -136,3 +136,12 @@ pushing it to production.
 
 EOF
 }
+
+function db_container_offline {
+cat >&2 << EOF
+
+Operation failed. The container "$1" is not running.
+Please make sure that the container is running and then rerun this command.
+
+EOF
+}

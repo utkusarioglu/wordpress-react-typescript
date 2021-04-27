@@ -3,6 +3,17 @@
 Wrt comes with some helpful utilities which you can use for populating your own
 production scripts.
 
+## check_container_online.sh
+
+Checks whether the container with the given name is currently running. If not,
+the script exits with 1. This function is used in every endpoint that talks to
+docker.
+
+```bash
+source scripts/shared/check_container_online.sh
+check_container_online $CONTAINER_NAME
+```
+
 ## check_env.sh
 
 Checks whether the `.env` file and the required variables inside it exists.

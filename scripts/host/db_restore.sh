@@ -6,6 +6,9 @@ source scripts/shared/sanitize_sql_filename.sh
 source scripts/shared/vars.sh
 source scripts/shared/messages.sh
 source scripts/shared/parse_args.sh
+source scripts/shared/check_container_online.sh
+
+check_container_online "${THEME_NAME}__db__dev"
 
 function title {
   title_template "Database Restore Api"

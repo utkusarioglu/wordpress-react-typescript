@@ -3,9 +3,11 @@
 source scripts/shared/exit_if_in_devcontainer.sh
 source scripts/shared/check_env.sh
 source .env
-# source scripts/shared/vars.sh
+source scripts/shared/check_container_online.sh
 source scripts/shared/messages.sh
 source scripts/shared/parse_args.sh
+
+check_container_online "${THEME_NAME}__db__dev"
 
 function title {
   title_template "Database Get Home Url Api"
