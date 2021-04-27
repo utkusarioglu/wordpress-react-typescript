@@ -33,12 +33,21 @@ function do_bootstrap {
   # Notice that this one doesn't add a comma at the end
   sed -i "/homepage/c\  \"homepage\": \"\/wp-content\/themes\/$THEME_NAME\"" ./user.prod.json 
 
-  echo "Installing NPM packages using Yarn, this may take a while..."
-
+  echo "Starting containers..."
   docker-compose -f $DEV_COMPOSE_FILE up -d
-  sleep 10 # TODO replace this with a more elegant line, maybe something that checks docker logs
-  docker exec -it ${WP_CONTAINER_NAME} bash -c "cd ${THEMES_DIR}/${THEME_NAME}/react-src && yarn"
-  docker-compose -f $DEV_COMPOSE_FILE down 
+  
+  echo "Waiting for the containers to be ready..."
+  WAIT=TRUE
+  READY_STRING="resuming normal operations"
+  while [ $WAIT == TRUE ]
+  do
+    if [ ! -z "$(docker logs "$WP_CONTAINER_NAME" 2>&1 | grep "$READY_STRING")" ]; then
+      echo "Installing NPM packages using Yarn, this may take a while..."
+      docker exec -it ${WP_CONTAINER_NAME} bash -c "cd ${THEMES_DIR}/${THEME_NAME}/react-src && yarn"
+      docker-compose -f $DEV_COMPOSE_FILE down 
+      WAIT=FALSE
+    fi
+  done
 }
 
 parse_args_basic $@
