@@ -6,8 +6,9 @@ source .env
 source scripts/shared/messages.sh
 source scripts/shared/parse_args.sh
 source scripts/shared/check_container_online.sh
+source scripts/shared/vars.sh
 
-check_container_online "${THEME_NAME}__db__dev" 
+check_container_online "${DB_CONTAINER_NAME}" 
 
 function title {
   title_template "Database Url Replacement Api"
@@ -59,7 +60,7 @@ function do_replace_url {
     --new-url ${NEW_URL}
 EOM
 
-  docker exec "${THEME_NAME}__db__dev" bash -c "$COMMAND" \
+  docker exec "${DB_CONTAINER_NAME}" bash -c "$COMMAND" \
     &> /dev/null
 }
 

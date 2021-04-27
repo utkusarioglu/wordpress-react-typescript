@@ -14,7 +14,7 @@ source scripts/shared/check_container_online.sh
 # because of this, it's not possible to use vars/HOST_BACKUPS_DIR
 # as this propert is set to be at backups/sql
 check_ownership "backups" 
-check_container_online "${THEME_NAME}__db__dev"
+check_container_online "${DB_CONTAINER_NAME}"
 
 function title {
   title_template "Database Backup Api"
@@ -61,7 +61,7 @@ function parse_args {
 function do_db_backup {
   echo "Creating ${BACKUP_FILE_NAME} inside ${HOST_BACKUPS_DIR}"
   CONTAINER_BACKUP_PATH="${CONTAINER_BACKUPS_DIR}/${BACKUP_FILE_NAME}"
-  docker exec "${THEME_NAME}__db__dev" bash -c \
+  docker exec "${DB_CONTAINER_NAME}" bash -c \
     "mysqldump -uroot -p${DB_ROOT_PASS} $DB_NAME > $CONTAINER_BACKUP_PATH" \
     &> /dev/null
 }

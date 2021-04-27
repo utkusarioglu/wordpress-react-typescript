@@ -6,8 +6,9 @@ source .env
 source scripts/shared/check_container_online.sh
 source scripts/shared/messages.sh
 source scripts/shared/parse_args.sh
+source scripts/shared/vars.sh
 
-check_container_online "${THEME_NAME}__db__dev"
+check_container_online "${DB_CONTAINER_NAME}"
 
 function title {
   title_template "Database Get Home Url Api"
@@ -27,7 +28,7 @@ EOF
 }
 
 function do_get_home_url {
-  docker exec "${THEME_NAME}__db__dev" bash \
+  docker exec "${DB_CONTAINER_NAME}" bash \
     -c "source /scripts/get_home_url.sh; get_home_url $DB_USER $DB_PASS $DB_NAME"
 }
 

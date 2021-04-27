@@ -73,8 +73,8 @@ function do_docker_prune {
   for command in 'stop' 'rm';
   do
     docker container $command \
-      "${THEME_NAME}__wp__dev" \
-      "${THEME_NAME}__db__dev" 1> /dev/null
+      "${WP_CONTAINER_NAME}" \
+      "${DB_CONTAINER_NAME}" 1> /dev/null
   done;  
 
   repo_name="$(basename "$PWD")"

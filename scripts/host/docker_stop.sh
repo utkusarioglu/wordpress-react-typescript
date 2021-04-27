@@ -4,6 +4,7 @@ source scripts/shared/check_env.sh
 source .env
 source scripts/shared/messages.sh
 source scripts/shared/parse_args.sh
+source scripts/shared/vars.sh
 source scripts/shared/exit_if_in_devcontainer.sh
 
 function title {
@@ -24,7 +25,7 @@ EOF
 }
 
 function do_docker_stop {
-  docker container stop "${THEME_NAME}__wp__dev" "${THEME_NAME}__db__dev"
+  docker container stop "${WP_CONTAINER_NAME}" "${DB_CONTAINER_NAME}"
 }
 
 parse_args_basic $@

@@ -7,7 +7,7 @@ source scripts/shared/messages.sh
 source scripts/shared/parse_args.sh
 source scripts/shared/check_container_online.sh
 
-check_container_online "${THEME_NAME}__wp__dev"
+check_container_online "${WP_CONTAINER_NAME}"
 
 function title {
   title_template "Theme Build Api"

@@ -37,7 +37,7 @@ function do_bootstrap {
 
   docker-compose -f $DEV_COMPOSE_FILE up -d
   sleep 10 # TODO replace this with a more elegant line, maybe something that checks docker logs
-  docker exec -it ${THEME_NAME}__wp__dev bash -c "cd ${THEMES_DIR}/${THEME_NAME}/react-src && yarn"
+  docker exec -it ${WP_CONTAINER_NAME} bash -c "cd ${THEMES_DIR}/${THEME_NAME}/react-src && yarn"
   docker-compose -f $DEV_COMPOSE_FILE down 
 }
 

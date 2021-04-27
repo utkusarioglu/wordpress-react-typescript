@@ -8,7 +8,7 @@ source scripts/shared/messages.sh
 source scripts/shared/parse_args.sh
 source scripts/shared/check_container_online.sh
 
-check_container_online "${THEME_NAME}__db__dev"
+check_container_online "${DB_CONTAINER_NAME}"
 
 function title {
   title_template "Database Restore Api"
@@ -74,7 +74,7 @@ function do_backup_restore {
   fi
 
   repo_name="$(basename "$PWD")"
-  container_name="${THEME_NAME}__db__dev"
+  container_name="${DB_CONTAINER_NAME}"
   container_backup_path="${CONTAINER_BACKUPS_DIR}/${BACKUP_FILE}"
 
   cat << EOF
