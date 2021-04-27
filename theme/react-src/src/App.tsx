@@ -8,8 +8,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h2 dangerouslySetInnerHTML={{ __html: window.config.pageTitle }} />
-          visit wp-admin
-        </a>
+        <a href="/wp-admin">visit wp-admin</a>
       </header>
     </div>
   );
