@@ -149,6 +149,7 @@ Wrt provides you with some tools to handle containerization details.
 | ------- | -------------------------------------------------------------------------------- |
 | (none)  | Show help information                                                            |
 | prune   | Remove containers, volumes and networks associated with your wrt dev environment |
+| stop    | Stop devcontainers                                                               |
 
 | Flags      | Params | Action                |
 | ---------- | ------ | --------------------- |
@@ -174,6 +175,18 @@ Before the removal, the command also takes a database backup and puts it inside
 | -n, --no-backup       |                | Skip taking the sql backup |
 | -b, --backup-filename | [sql filename] | Set custom sql filename    |
 | -h, --help            |                | Show help information      |
+
+#### wrt docker stop [options]
+
+Allows you to stop all repo related devcontainers at once.
+
+| Command | Action                    |
+| ------- | ------------------------- |
+| (none)  | Stop repo's devcontainers |
+
+| Flags      | Params | Action                |
+| ---------- | ------ | --------------------- |
+| -h, --help |        | Show help information |
 
 ### wrt production [options] [command]
 

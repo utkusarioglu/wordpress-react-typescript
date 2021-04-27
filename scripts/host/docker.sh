@@ -32,6 +32,12 @@ function parse_args {
         exit
         ;;
 
+      stop)
+        shift
+        "$HOST_SCRIPTS/docker_stop.sh" $@
+        exit
+        ;;
+
       *)
         parse_args_essential title commands_and_options $@
     esac
