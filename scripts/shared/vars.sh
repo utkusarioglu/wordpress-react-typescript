@@ -16,5 +16,6 @@ PRODUCTION_SCRIPTS=scripts/production
 
 CONTAINER_BACKUPS_DIR=backups/sql
 
+# You will need to change docker-compose file if you make any changes here
 WP_CONTAINER_NAME=${THEME_NAME}__wp__dev
 DB_CONTAINER_NAME=${THEME_NAME}__db__dev
