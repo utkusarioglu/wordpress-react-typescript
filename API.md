@@ -33,7 +33,8 @@ The top-level api consists of the following commands:
 ### wrt bootstrap [options]
 
 Sets the theme name using the `.env/THEME_NAME` variable in multiple locations.
-It will also install all the NPM dependencies by using yarn.
+It will also build the docker images and install all the NPM dependencies by
+using yarn.
 
 | Command | Action                      |
 | ------- | --------------------------- |
@@ -45,8 +46,8 @@ It will also install all the NPM dependencies by using yarn.
 
 ### wrt db [options] [command]
 
-Hierarchical parent for controlling devcontainer for WordPress database. The
-children consist of the following commands:
+Parent for controlling development WordPress database. The children consist of
+the following:
 
 | Command          | Action                                         |
 | ---------------- | ---------------------------------------------- |
@@ -77,10 +78,10 @@ However, it's possible to define a custom name through the flag `-f`.
 
 #### wrt db get-home-url [options]
 
-Returns the currently active WordPress home url. If this setting doesn't
-coincide with the url that you are using to browse to your site, then you won't
-be able to so open most pages as WordPress will redirect the request to the home
-url. You can change the home url setting to any address that you need using
+Returns the currently active WordPress home url. If this setting doesn't match
+the url that you are using to browse your site, then you won't be able to open
+most pages as WordPress will redirect the request to the home url. You can
+change the home url setting to any address that you need using
 `wrt db replace-home-url` api.
 
 | Command | Action                                         |
@@ -98,15 +99,15 @@ it appears. By default, the api will replace `home` with `localhost` but it's
 possible to define a custom value through the flag `-n`.
 
 If you are doing development on a pre-existing database image, it's possible
-that you may see your url being rewritten, followed by your browser telling you
-the page is not working. This is because WordPress is redirecting your browser
-using the `home` value inside `wp_options` schema, which results in a failing
-page load. Replacing the `home` url fixes this issue.
+that you may see WordPress redirecting your requests, followed by your browser
+telling you the page is not working. This is because WordPress is redirecting
+your browser using the `home` value inside `wp_options` schema, which results in
+a failing page load. Replacing the `home` url fixes this issue.
 
 After the development on your WordPress project is complete, you may have the
 need to run the same command to replace your dev address with your site's public
-address. Otherwise, your production instance may redirect the client browser to
-`localhost` or any other setting you use in your dev environment.
+address. Otherwise, your production instance may redirect you to the setting you
+use in your dev environment.
 
 | Command | Action                            |
 | ------- | --------------------------------- |
@@ -155,8 +156,6 @@ Wrt provides you with some tools to handle containerization details.
 | ---------- | ------ | --------------------- |
 | -h, --help |        | Show help information |
 
-Well, just one tool for now...
-
 #### wrt docker prune [options]
 
 By default, this repo does not clean up its devcontainers. Instead, you are
@@ -200,9 +199,9 @@ these, please click [here](./SCRIPT_REFERENCE.md)
 
 This repo was written with the assumption that after the development is
 complete, the WordPress theme and the sql data created will be running on a
-traditional environment with no containers, no orchestration and just a single
-instance. So, the api was designed to account for pulling and pushing uploads,
-theme, and other components of the WordPress production in pieces.
+traditional environment with no containers, no orchestration and maybe just a
+single instance. So, the api was designed to account for pulling and pushing
+uploads, theme, and other components of the WordPress production in pieces.
 
 Though I see no reason why this repo could not be adapted to service a more
 scalable architecture. A Docker / Kubernetes push endpoint for images could be
@@ -267,7 +266,7 @@ be edited for the apis to work is listed in the table below.
 
 ### wrt theme [options] [command]
 
-Hierarchical parent for actions that relate to managing your WordPress theme.
+Parent for actions that relate to managing your WordPress theme.
 
 | Command | Action                                                         |
 | ------- | -------------------------------------------------------------- |
