@@ -8,6 +8,8 @@ source scripts/shared/parse_args.sh
 source scripts/shared/check_container_online.sh
 source scripts/shared/exit_if_in_devcontainer.sh
 
+check_container_online "${WP_CONTAINER_NAME}"
+
 function title {
   title_template "Theme Package Api"
 }
