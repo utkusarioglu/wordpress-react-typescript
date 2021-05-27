@@ -102,7 +102,11 @@ function theme_packaged_message {
   cat << EOF
 
 Theme packaging complete.
-You can find your packaged theme in <root>/dist.zip
+You can find your packaged theme in <root>/$1.zip
+
+Do not change the name of this file if you are planning to use WordPress' 
+upload theme feature to add your theme. Doing so will break your site because 
+of how WordPress upload theme feature works.
 
 EOF
 }
