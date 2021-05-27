@@ -1,8 +1,12 @@
 #! /bin/bash
 
+source scripts/shared/check_env.sh
+source .env
 source scripts/shared/vars.sh
 source scripts/shared/messages.sh
 source scripts/shared/parse_args.sh
+source scripts/shared/check_container_online.sh
+source scripts/shared/exit_if_in_devcontainer.sh
 
 function title {
   title_template "Theme Package Api"
