@@ -6,6 +6,7 @@ source scripts/shared/vars.sh
 source scripts/shared/messages.sh
 source scripts/shared/parse_args.sh
 source scripts/shared/check_container_online.sh
+source scripts/shared/exit_if_in_devcontainer.sh
 
 check_container_online "${WP_CONTAINER_NAME}"
 
