@@ -35,3 +35,5 @@ build
 dist.zip
 uploads
 plugins
+
+/*.zip
