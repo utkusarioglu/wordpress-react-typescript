@@ -34,14 +34,18 @@ function do_theme_build {
 
   # handle build
   echo "Building theme ${THEME_NAME}"
-  cd theme/react-src 
-  yarn build
-  cd ../..
-
+  docker exec -it \
+    "${WP_CONTAINER_NAME}" \
+    bash -c "cd /workspace/theme/react-src && yarn build"
+  
+  # adjust file permissions
+  echo "Adjusting file permissions..."
+  sudo chown "$(whoami):$(whoami)" -R build
+  
   # Remove irrelevant files
   echo "Removing clutter..."
   cd build
-  rm ./!READY_TO_DEPLOY!.txt
+  rm -f ./!READY_TO_DEPLOY!.txt
 }
 
 parse_args_basic $@
