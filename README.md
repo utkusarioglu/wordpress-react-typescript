@@ -83,10 +83,10 @@ below:
    of the said script.
 
 1. You may have the need to update the WordPress home url. For this, you can run
-   `./wrt.sh db replace-url` to correct the previous WordPress home url with the
-   one you want to use for your dev environment. This may be localhost or some
-   ip/url you'd like to set. Please refer to **Scripts** section of this readme
-   to learn more about the said script.
+   `./wrt.sh db replace-home-url` to correct the previous WordPress home url
+   with the one you want to use for your dev environment. This may be localhost
+   or some ip/url you'd like to set. Please refer to **Scripts** section of this
+   readme to learn more about the said script.
 
 ## Api
 
