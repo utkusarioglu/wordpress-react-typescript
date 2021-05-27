@@ -1,5 +1,7 @@
 #! /bin/bash
 
+source scripts/shared/check_env.sh
+source .env
 source scripts/shared/vars.sh
 source scripts/shared/messages.sh
 source scripts/shared/parse_args.sh
@@ -17,7 +19,7 @@ Commands:
                 theme scripts.
   build         Build the WordPress theme and place it inside 
                 <root>/build directory
-  dist          Create theme package at <root>/dist.zip
+  package       Create theme package at <root>/$THEME_NAME.zip
 
 Options:
   -h, --help    Shows this help information
