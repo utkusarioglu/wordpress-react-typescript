@@ -15,6 +15,7 @@ Usage: wrt docker [options] [COMMAND]
 Commands:
   prune         Remove containers, volumes and networks associated
                 with your wrt dev environment
+  stop          Stop all the containers belonging to the project
 
 Options:
   -h, --help    Shows this help information
