@@ -15,11 +15,12 @@ function commands_and_options {
 Usage: wrt theme [options] [COMMAND]
 
 Commands:
-  clean         Remove runtime files created by React WordPress 
-                theme scripts.
-  build         Build the WordPress theme and place it inside 
-                <root>/build directory
-  package       Create theme package at <root>/$THEME_NAME.zip
+  clean               Remove runtime files created by React WordPress 
+                      theme scripts.
+  build               Build the WordPress theme and place it inside 
+                      <root>/build directory
+  package             Create theme package at <root>/$THEME_NAME.zip
+  get-active-plugins  Get plugins that are active in wp dev database 
 
 Options:
   -h, --help    Shows this help information
@@ -46,6 +47,12 @@ function parse_args {
       package)
         shift
         "$HOST_SCRIPTS/theme_package.sh" $@
+        exit
+        ;;
+
+      get-active-plugins)
+        shift
+        "$HOST_SCRIPTS/theme_active_plugins.sh" $@
         exit
         ;;
 

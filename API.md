@@ -317,3 +317,17 @@ used by wordpress.org or by your own production WordPress instance.
 | Flags      | Params | Action                |
 | ---------- | ------ | --------------------- |
 | -h, --help |        | Show help information |
+
+#### wrt theme get-active-plugins [options]
+
+Returns currently active plugins used by the dev environment. This may be useful
+while you are installing the same plugins in the production instance of
+WordPress.
+
+| Command | Action                           |
+| ------- | -------------------------------- |
+| (none)  | Returns currently active plugins |
+
+| Flags      | Params | Action                |
+| ---------- | ------ | --------------------- |
+| -h, --help |        | Show help information |
